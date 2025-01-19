@@ -27,12 +27,12 @@ public class Main {
 //        mE.mostrardatosEmpelados();
 //        mE.modificarDatosEmpelados("Subjefe","Lunes-Jueves",1);
 
-//        JFrame frame = new JFrame();
-//        frame.setContentPane(new iBookMe().backgroundPanel);
-//        frame.setSize(800, 600);
-//        frame.setPreferredSize(new Dimension(1020, 640));
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.pack();
-//        frame.setVisible(true);
+        JFrame frame = new JFrame("BookMe");
+        frame.setContentPane(new registerBookMe().registerPanel);
+        frame.setSize(800, 600);
+        frame.setPreferredSize(new Dimension(1020, 640));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }
