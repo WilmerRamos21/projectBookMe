@@ -53,15 +53,56 @@ public class loginBookMe {
                     ps.setString(2, password);
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
+                        rol = rs.getString("rol");
                         JOptionPane.showMessageDialog(null,"Bienvenido "+rs.getString("rol"));
-                        switch (rs.getString("rol")) {
-                            case "Administrador":
+                        switch (rol.toLowerCase()) {
+                            case "admin":
+                                JFrame frame = new JFrame("Administrador");
+                                frame.setContentPane(new adminBookMe().adminPanel);
+                                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                frame.setSize(800, 600);
+                                frame.setPreferredSize(new Dimension(1020, 640));
+                                frame.pack();
+                                frame.setVisible(true);
+                                SwingUtilities.getWindowAncestor(loginPanel).dispose();
+                                break;
+                            case "empleado":
+                                JFrame frame2 = new JFrame("Empleado");
+                                frame2.setContentPane(new empleadoBookMe().empleadoPanel);
+                                frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                frame2.setSize(800, 600);
+                                frame2.setPreferredSize(new Dimension(1020, 640));
+                                frame2.pack();
+                                frame2.setVisible(true);
+                                SwingUtilities.getWindowAncestor(loginPanel).dispose();
+                                break;
+                            case "cliente":
+                                JFrame frame3 = new JFrame("Cliente");
+                                frame3.setContentPane(new clienteBookMe().clientePanel);
+                                frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                frame3.setSize(800, 600);
+                                frame3.setPreferredSize(new Dimension(1020, 640));
+                                frame3.pack();
+                                frame3.setVisible(true);
+                                SwingUtilities.getWindowAncestor(loginPanel).dispose();
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null,"Rol desconocido");
                         }
                     }else {
                         JOptionPane.showMessageDialog(null,"Usuario no encontrado");
                     }
                 }catch (Exception a){
                     a.printStackTrace();
+                    JOptionPane.showMessageDialog(null,"Error inesperado.");
+                } finally {
+                    try {
+                        if (con != null) {
+                            con.close();
+                        }
+                    }catch (SQLException a){
+                        a.printStackTrace();
+                    }
                 }
             }
         });
