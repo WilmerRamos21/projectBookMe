@@ -4,40 +4,41 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
-public class registerBookMe {
-    public JPanel registerPanel;
+public class subRegister {
     private JTextField textFieldCedula;
     private JTextField textFieldNombre;
     private JTextField textFieldApellido;
     private JTextField textFieldCorreo;
-    private JPasswordField passwordField1;
+    private JPasswordField JFieldContrasenia;
     private JTextField textFieldTelefono;
     private JTextField textFieldRol;
-    private JButton btnLogin;
-    private JButton btnRegister;
+    private JButton btnRegistrarUsuario;
+    private JButton btnRegresar;
+    public JPanel subRegisterPanel;
 
-    public registerBookMe() {
-        btnRegister.addActionListener(new ActionListener() {
+    public subRegister() {
+        btnRegistrarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 usuariosCRUD crud = new usuariosCRUD();
-                String password = new String(passwordField1.getPassword());
-                crud.ingresarUsuarios(Integer.parseInt(textFieldCedula.getText()),textFieldNombre.getText(),textFieldApellido.getText(),
-                        textFieldCorreo.getText(),password,textFieldTelefono.getText(),textFieldRol.getText(), LocalDate.now());
+                String password = new String(JFieldContrasenia.getPassword());
+                crud.ingresarUsuarios(Integer.parseInt(textFieldCedula.getText()), textFieldNombre.getText(), textFieldApellido.getText(),
+                        textFieldCorreo.getText(), password, textFieldTelefono.getText(), textFieldRol.getText(), LocalDate.now());
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente");
             }
         });
-        btnLogin.addActionListener(new ActionListener() {
+        btnRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Inicio de sesión");
-                frame.setContentPane(new loginBookMe().loginPanel);
+                JFrame frame = new JFrame();
+                frame.setContentPane(new gestionUsuarios().gestionUsuariosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
                 frame.setPreferredSize(new Dimension(800, 600));
                 frame.pack();
                 frame.setVisible(true);
-                SwingUtilities.getWindowAncestor(registerPanel).dispose();
+                SwingUtilities.getWindowAncestor(subRegisterPanel).dispose();
+
             }
         });
     }

@@ -2,6 +2,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class usuariosCRUD {
 
@@ -27,26 +28,55 @@ public class usuariosCRUD {
         }
     }
 
-    public void mostrarDatosusuarios(){
-        String query = "SELECT * FROM usuarios";
-        try (Connection con= Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)){
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                System.out.println("Cedula: " + rs.getInt("cedula"));
-                System.out.println("Nombre: "+rs.getString("nombre"));
-                System.out.println("Apellido: "+rs.getString("apellido"));
-                System.out.println("Correo electronico: "+rs.getString("correo"));
-                System.out.println("Contraseña: "+rs.getString("contrasenia"));
-                System.out.println("Telefono: "+rs.getString("telefono"));
-                System.out.println("Rol: "+rs.getString("rol"));
-                System.out.println("Fecha registro: "+rs.getDate("fecha_registro"));
-            }
 
+    public ArrayList<Object[]> mostrarDatosusuarios() {
+        ArrayList<Object[]> datosUsuarios = new ArrayList<>();
+        String query = "SELECT * FROM usuarios";
+
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Object[] fila = new Object[]{
+                        rs.getInt("cedula"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("correo"),
+                        rs.getString("contrasenia"),
+                        rs.getString("telefono"),
+                        rs.getString("rol")
+                };
+                datosUsuarios.add(fila);
+            }
+            System.out.println("Cantidad de registros obtenidos: " + datosUsuarios.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return datosUsuarios;
+
     }
+
+//
+//    public void mostrarDatosusuarios(){
+//        String query = "SELECT * FROM usuarios";
+//        try (Connection con= Conexion.getConnection();
+//             PreparedStatement ps = con.prepareStatement(query)){
+//            ResultSet rs = ps.executeQuery();
+//            while(rs.next()){
+//                System.out.println("Cedula: " + rs.getInt("cedula"));
+//                System.out.println("Nombre: "+rs.getString("nombre"));
+//                System.out.println("Apellido: "+rs.getString("apellido"));
+//                System.out.println("Correo electronico: "+rs.getString("correo"));
+//                System.out.println("Contraseña: "+rs.getString("contrasenia"));
+//                System.out.println("Telefono: "+rs.getString("telefono"));
+//                System.out.println("Rol: "+rs.getString("rol"));
+//                System.out.println("Fecha registro: "+rs.getDate("fecha_registro"));
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public void modificarUsuarios(String nombre,
