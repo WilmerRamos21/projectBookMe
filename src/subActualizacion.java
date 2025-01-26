@@ -38,6 +38,13 @@ public class subActualizacion {
                 UC.modificarUsuarios(textFieldNombre.getText(),textFieldApellido.getText(),
                         textFieldCorreo.getText(),password,textFieldTelefono.getText(),textFieldRol.getText(), LocalDate.now(),Integer.parseInt(textFieldCedula.getText()));
                 JOptionPane.showMessageDialog(actualizarPanel, "Datos actualizados exitosamente");
+                textFieldCedula.setText("");
+                textFieldNombre.setText("");
+                textFieldApellido.setText("");
+                textFieldCorreo.setText("");
+                JFielContrasenia.setText("");
+                textFieldTelefono.setText("");
+                textFieldRol.setText("");
             }
         });
     }

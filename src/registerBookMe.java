@@ -25,6 +25,13 @@ public class registerBookMe {
                 crud.ingresarUsuarios(Integer.parseInt(textFieldCedula.getText()),textFieldNombre.getText(),textFieldApellido.getText(),
                         textFieldCorreo.getText(),password,textFieldTelefono.getText(),textFieldRol.getText(), LocalDate.now());
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente");
+                textFieldCedula.setText("");
+                textFieldNombre.setText("");
+                textFieldApellido.setText("");
+                textFieldCorreo.setText("");
+                passwordField1.setText("");
+                textFieldTelefono.setText("");
+                textFieldRol.setText("");
             }
         });
         btnLogin.addActionListener(new ActionListener() {

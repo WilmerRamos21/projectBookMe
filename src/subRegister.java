@@ -25,6 +25,13 @@ public class subRegister {
                 crud.ingresarUsuarios(Integer.parseInt(textFieldCedula.getText()), textFieldNombre.getText(), textFieldApellido.getText(),
                         textFieldCorreo.getText(), password, textFieldTelefono.getText(), textFieldRol.getText(), LocalDate.now());
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente");
+                textFieldCedula.setText("");
+                textFieldNombre.setText("");
+                textFieldApellido.setText("");
+                textFieldCorreo.setText("");
+                JFieldContrasenia.setText("");
+                textFieldTelefono.setText("");
+                textFieldRol.setText("");
             }
         });
         btnRegresar.addActionListener(new ActionListener() {

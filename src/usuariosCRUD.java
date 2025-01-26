@@ -29,54 +29,54 @@ public class usuariosCRUD {
     }
 
 
-    public ArrayList<Object[]> mostrarDatosusuarios() {
-        ArrayList<Object[]> datosUsuarios = new ArrayList<>();
-        String query = "SELECT * FROM usuarios";
-
-        try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Object[] fila = new Object[]{
-                        rs.getInt("cedula"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido"),
-                        rs.getString("correo"),
-                        rs.getString("contrasenia"),
-                        rs.getString("telefono"),
-                        rs.getString("rol")
-                };
-                datosUsuarios.add(fila);
-            }
-            System.out.println("Cantidad de registros obtenidos: " + datosUsuarios.size());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return datosUsuarios;
-
-    }
-
-//
-//    public void mostrarDatosusuarios(){
+//    public ArrayList<Object[]> mostrarDatosusuarios() {
+//        ArrayList<Object[]> datosUsuarios = new ArrayList<>();
 //        String query = "SELECT * FROM usuarios";
-//        try (Connection con= Conexion.getConnection();
-//             PreparedStatement ps = con.prepareStatement(query)){
-//            ResultSet rs = ps.executeQuery();
-//            while(rs.next()){
-//                System.out.println("Cedula: " + rs.getInt("cedula"));
-//                System.out.println("Nombre: "+rs.getString("nombre"));
-//                System.out.println("Apellido: "+rs.getString("apellido"));
-//                System.out.println("Correo electronico: "+rs.getString("correo"));
-//                System.out.println("Contraseña: "+rs.getString("contrasenia"));
-//                System.out.println("Telefono: "+rs.getString("telefono"));
-//                System.out.println("Rol: "+rs.getString("rol"));
-//                System.out.println("Fecha registro: "+rs.getDate("fecha_registro"));
-//            }
 //
+//        try (Connection con = Conexion.getConnection();
+//             PreparedStatement ps = con.prepareStatement(query)) {
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                Object[] fila = new Object[]{
+//                        rs.getInt("cedula"),
+//                        rs.getString("nombre"),
+//                        rs.getString("apellido"),
+//                        rs.getString("correo"),
+//                        rs.getString("contrasenia"),
+//                        rs.getString("telefono"),
+//                        rs.getString("rol")
+//                };
+//                datosUsuarios.add(fila);
+//            }
+//            System.out.println("Cantidad de registros obtenidos: " + datosUsuarios.size());
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
+//        return datosUsuarios;
+//
 //    }
+
+
+    public void mostrarDatosusuarios(){
+        String query = "SELECT * FROM usuarios";
+        try (Connection con= Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)){
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                System.out.println("Cedula: " + rs.getInt("cedula"));
+                System.out.println("Nombre: "+rs.getString("nombre"));
+                System.out.println("Apellido: "+rs.getString("apellido"));
+                System.out.println("Correo electronico: "+rs.getString("correo"));
+                System.out.println("Contraseña: "+rs.getString("contrasenia"));
+                System.out.println("Telefono: "+rs.getString("telefono"));
+                System.out.println("Rol: "+rs.getString("rol"));
+                System.out.println("Fecha registro: "+rs.getDate("fecha_registro"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void modificarUsuarios(String nombre,
@@ -102,15 +102,22 @@ public class usuariosCRUD {
         }
     }
 
-    public void eliminarUsuario(int cedula) {
+    public boolean eliminarUsuario(int cedula) {
         String query = "DELETE FROM usuarios where cedula = ?";
         try (Connection con= Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(query)){
             ps.setInt(1, cedula);
-            ps.executeUpdate();
-            System.out.println("Datos eliminados exitosamente");
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Datos eliminados correctamente");
+                return true;
+            } else{
+                System.out.println("No se pudo eliminar el usuario");
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
     public static String hashPassword(String password) {
