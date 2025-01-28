@@ -52,5 +52,18 @@ public class adminBookMe {
                 SwingUtilities.getWindowAncestor(adminPanel).dispose();
             }
         });
+        btnGestionPagos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
+                frame.setContentPane(new gestionPagos().gestionPagosPanel);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(800, 600);
+                frame.setPreferredSize(new Dimension(800, 600));
+                frame.pack();
+                frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(adminPanel).dispose();
+            }
+        });
     }
 }

@@ -35,4 +35,18 @@ public class serviciosCRUD {
             return false;
         }
     }
+    public void modifcarServicio(String nombreServicio, String descripcionServicio, float precioServicio, int idServicio){
+        String query = "UPDATE servicios SET nombre_servicio = ?, descripcion = ?, precio = ? WHERE id_servicio = ?";
+        try(Connection con = Conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query)){
+            ps.setString(1,nombreServicio);
+            ps.setString(2,descripcionServicio);
+            ps.setFloat(3,precioServicio);
+            ps.setInt(4,idServicio);
+            ps.executeUpdate();
+            System.out.println("Servicio modificado correctamente");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -3,15 +3,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class gestionServicios {
-    public JPanel gestionServiciosPanel;
-    private JButton btnIngresar;
-    private JButton btnActualizar;
-    private JButton btnLeer;
-    private JButton btnEliminar;
+public class gestionPagos {
+    public JPanel gestionPagosPanel;
+    private JButton btnIngresarPagos;
+    private JButton btnVerPagos;
+    private JButton btnEliminarPago;
+    private JButton btnActualizarPagos;
     private JButton btnVolver;
 
-    public gestionServicios() {
+    public gestionPagos() {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -22,59 +22,59 @@ public class gestionServicios {
                 frame.setPreferredSize(new Dimension(800, 600));
                 frame.pack();
                 frame.setVisible(true);
-                SwingUtilities.getWindowAncestor(gestionServiciosPanel).dispose();
+                SwingUtilities.getWindowAncestor(gestionPagosPanel).dispose();
             }
         });
-        btnIngresar.addActionListener(new ActionListener() {
+        btnIngresarPagos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
-                frame.setContentPane(new insertarServicio().ingresoServiciosPanel);
+                frame.setContentPane(new ingresarPagos().ingresarPagosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
                 frame.setPreferredSize(new Dimension(800, 600));
                 frame.pack();
                 frame.setVisible(true);
-                SwingUtilities.getWindowAncestor(gestionServiciosPanel).dispose();
+                SwingUtilities.getWindowAncestor(gestionPagosPanel).dispose();
             }
         });
-        btnEliminar.addActionListener(new ActionListener() {
+        btnEliminarPago.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
-                frame.setContentPane(new eliminarServicio().eliminarServicioPanel);
+                frame.setContentPane(new eliminarPago().eliminarPagoPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
                 frame.setPreferredSize(new Dimension(800, 600));
                 frame.pack();
                 frame.setVisible(true);
-                SwingUtilities.getWindowAncestor(gestionServiciosPanel).dispose();
+                SwingUtilities.getWindowAncestor(gestionPagosPanel).dispose();
             }
         });
-        btnActualizar.addActionListener(new ActionListener() {
+        btnActualizarPagos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
-                frame.setContentPane(new modificarServicio().modificarServicioPanel);
+                frame.setContentPane(new actualizarPago().actualizarPagoPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
                 frame.setPreferredSize(new Dimension(800, 600));
                 frame.pack();
                 frame.setVisible(true);
-                SwingUtilities.getWindowAncestor(gestionServiciosPanel).dispose();
+                SwingUtilities.getWindowAncestor(gestionPagosPanel).dispose();
             }
         });
-        btnLeer.addActionListener(new ActionListener() {
+        btnVerPagos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
-                frame.setContentPane(new mostrarServicios().mostrarServiciosPanel);
+                frame.setContentPane(new mostrarDatosPago().mostrarPagosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
                 frame.setPreferredSize(new Dimension(800, 600));
                 frame.pack();
                 frame.setVisible(true);
-                SwingUtilities.getWindowAncestor(gestionServiciosPanel).dispose();
+                SwingUtilities.getWindowAncestor(gestionPagosPanel).dispose();
 
             }
         });
