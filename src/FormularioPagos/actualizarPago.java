@@ -11,9 +11,8 @@ import java.time.LocalDate;
 public class actualizarPago {
     public JPanel actualizarPagoPanel;
     private JTextField textFieldIdPago;
-    private JTextField textFieldCedula;
-    private JTextField textFieldIdServicio;
-    private JTextField textFieldMontoPago;
+    private JTextField textFieldId;
+    private JTextField textFieldIdReserva;
     private JTextField textFieldMetodoPago;
     private JTextField textFieldEstadoPago;
     private JTextField textFieldDescripcion;
@@ -38,13 +37,12 @@ public class actualizarPago {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pagosCRUD payCRUD = new pagosCRUD();
-                payCRUD.actualizarPago(Integer.parseInt(textFieldCedula.getText()),Integer.parseInt(textFieldIdServicio.getText()),
-                        Integer.parseInt(textFieldMontoPago.getText()), LocalDate.now(),textFieldMetodoPago.getText(),textFieldEstadoPago.getText(),textFieldDescripcion.getText(),Integer.parseInt(textFieldIdPago.getText()));
+                payCRUD.actualizarPago(Integer.parseInt(textFieldId.getText()),Integer.parseInt(textFieldIdReserva.getText()),
+                        LocalDate.now(),textFieldMetodoPago.getText(),textFieldEstadoPago.getText(),textFieldDescripcion.getText(),Integer.parseInt(textFieldIdPago.getText()));
                 JOptionPane.showMessageDialog(null, "Pago actualizado correctamente","Actualizar Pago",JOptionPane.INFORMATION_MESSAGE);
                 textFieldIdPago.setText("");
-                textFieldCedula.setText("");
-                textFieldIdServicio.setText("");
-                textFieldMontoPago.setText("");
+                textFieldId.setText("");
+                textFieldIdReserva.setText("");
                 textFieldMetodoPago.setText("");
                 textFieldEstadoPago.setText("");
                 textFieldDescripcion.setText("");

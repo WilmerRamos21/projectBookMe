@@ -11,11 +11,9 @@ import java.time.LocalDate;
 public class modificarReserva {
     public JPanel modificarReservaPanel;
     private JTextField textFieldIdReserva;
-    private JTextField textFieldCedulaCliente;
-    private JTextField textFieldIdServicio;
-    private JTextField textFieldCedulaEmpleado;
+    private JTextField textFieldIdCliente;
+    private JTextField textFieldIdHorario;
     private JTextField textFieldEstadoReserva;
-    private JTextField textFieldPrecio;
     private JTextField textFieldObservaciones;
     private JButton btnModificar;
     private JButton btnVolver;
@@ -38,15 +36,13 @@ public class modificarReserva {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reservasCRUD resCRUD = new reservasCRUD();
-                resCRUD.actualizarReserva(Integer.parseInt(textFieldCedulaCliente.getText()),Integer.parseInt(textFieldIdServicio.getText()),
-                        Integer.parseInt(textFieldCedulaEmpleado.getText()), LocalDate.now(),textFieldEstadoReserva.getText(),Integer.parseInt(textFieldPrecio.getText()),textFieldObservaciones.getText(),Integer.parseInt(textFieldIdReserva.getText()));
+                resCRUD.actualizarReserva(Integer.parseInt(textFieldIdCliente.getText()),Integer.parseInt(textFieldIdHorario.getText()),
+                        LocalDate.now(),textFieldEstadoReserva.getText(),textFieldObservaciones.getText(),Integer.parseInt(textFieldIdReserva.getText()));
                 JOptionPane.showMessageDialog(null, "Reserva modificada correctamente","Modificar Reserva",JOptionPane.INFORMATION_MESSAGE);
                 textFieldIdReserva.setText("");
-                textFieldCedulaCliente.setText("");
-                textFieldIdServicio.setText("");
-                textFieldCedulaEmpleado.setText("");
+                textFieldIdCliente.setText("");
+                textFieldIdHorario.setText("");
                 textFieldEstadoReserva.setText("");
-                textFieldPrecio.setText("");
                 textFieldObservaciones.setText("");
             }
         });

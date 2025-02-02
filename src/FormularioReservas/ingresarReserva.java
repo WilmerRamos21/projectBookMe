@@ -10,12 +10,8 @@ import java.time.LocalDate;
 
 public class ingresarReserva {
     public JPanel registrarReservaPanel;
-    private JTextField textFieldIdReserva;
-    private JTextField textFieldCedulaCliente;
-    private JTextField textFieldIdServicio;
-    private JTextField textFieldCedulaEncargado;
-    private JTextField textFieldEstadoReserva;
-    private JTextField textFieldPrecio;
+    private JTextField textFieldIdCliente;
+    private JTextField textFieldIdHorario;
     private JTextField textFieldDescripcion;
     private JButton btnIngresarReserva;
     private JButton btnVolver;
@@ -38,15 +34,11 @@ public class ingresarReserva {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reservasCRUD resCRUD = new reservasCRUD();
-                resCRUD.ingresarReserva(Integer.parseInt(textFieldIdReserva.getText()),Integer.parseInt(textFieldCedulaCliente.getText()),Integer.parseInt(textFieldIdServicio.getText()),
-                        Integer.parseInt(textFieldCedulaEncargado.getText()), LocalDate.now(),textFieldEstadoReserva.getText(),Integer.parseInt(textFieldPrecio.getText()),textFieldDescripcion.getText());
+                resCRUD.ingresarReserva(Integer.parseInt(textFieldIdCliente.getText()),Integer.parseInt(textFieldIdHorario.getText()),
+                        LocalDate.now(),textFieldDescripcion.getText());
                 JOptionPane.showMessageDialog(null, "Reserva insertada correctamente","Ingresar Reserva",JOptionPane.INFORMATION_MESSAGE);
-                textFieldIdReserva.setText("");
-                textFieldCedulaCliente.setText("");
-                textFieldIdServicio.setText("");
-                textFieldCedulaEncargado.setText("");
-                textFieldEstadoReserva.setText("");
-                textFieldPrecio.setText("");
+                textFieldIdCliente.setText("");
+                textFieldIdHorario.setText("");
                 textFieldDescripcion.setText("");
             }
         });

@@ -24,8 +24,7 @@ public class mostrarDatosPago {
         DefaultTableModel modelTable = new DefaultTableModel();
         modelTable.addColumn("ID Pago");
         modelTable.addColumn("ID Cliente");
-        modelTable.addColumn("ID Servicio");
-        modelTable.addColumn("Valor Pago");
+        modelTable.addColumn("ID Reserva");
         modelTable.addColumn("Fecha Pago");
         modelTable.addColumn("Método Pago");
         modelTable.addColumn("Estado Pago");
@@ -88,9 +87,8 @@ public class mostrarDatosPago {
             while (rs.next()) {
                 modelTable.addRow(new Object[]{
                         rs.getString("id_pago"),
-                        rs.getString("cedula_cliente"),
-                        rs.getString("id_servicio"),
-                        rs.getString("monto"),
+                        rs.getString("id_cliente"),
+                        rs.getString("id_reserva"),
                         rs.getString("fecha_pago"),
                         rs.getString("metodo_pago"),
                         rs.getString("estado_pago"),

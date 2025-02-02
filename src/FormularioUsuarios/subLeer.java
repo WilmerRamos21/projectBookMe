@@ -17,18 +17,16 @@ public class subLeer {
     public JPanel leerPanel;
     private JTable datosTable;
     private JButton btnVolver;
-    private JTextField textFieldCedula;
+    private JTextField textFieldId;
     private JButton btnBuscar;
     public JPanel panelBusqueda;
 
     public subLeer() {
         DefaultTableModel modelTable = new DefaultTableModel();
-        modelTable.addColumn("Cedula");
-        modelTable.addColumn("Nombre");
-        modelTable.addColumn("Apellido");
+        modelTable.addColumn("ID");
+        modelTable.addColumn("Nombre y Apellido");
         modelTable.addColumn("Correo");
         modelTable.addColumn("Contraseña");
-        modelTable.addColumn("Telefono");
         modelTable.addColumn("Rol");
 
         datosTable = new JTable(modelTable);
@@ -39,10 +37,10 @@ public class subLeer {
         btnVolver = new JButton("Volver");
         leerPanel.add(btnVolver, BorderLayout.SOUTH); // Botón en la parte inferior
 
-        textFieldCedula = new JTextField(15);
+        textFieldId = new JTextField(15);
         btnBuscar = new JButton("Buscar");
         panelBusqueda = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelBusqueda.add(textFieldCedula);
+        panelBusqueda.add(textFieldId);
         panelBusqueda.add(btnBuscar);
         leerPanel.add(panelBusqueda, BorderLayout.NORTH);
 
@@ -66,37 +64,35 @@ public class subLeer {
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String cedulaFiltro = textFieldCedula.getText().trim();
-                cargarDatos((DefaultTableModel) datosTable.getModel(), cedulaFiltro);
+                String idFiltro = textFieldId.getText().trim();
+                cargarDatos((DefaultTableModel) datosTable.getModel(), idFiltro);
             }
         });
     }
 
-    public static void cargarDatos(DefaultTableModel modelTable, String cedulaFiltro) {
+    public static void cargarDatos(DefaultTableModel modelTable, String idFiltro) {
         System.out.println("Cargando datos en la tabla...");
         modelTable.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
 
         String query = "SELECT * FROM usuarios";
-        boolean usarFiltro = cedulaFiltro != null && !cedulaFiltro.isEmpty();
+        boolean usarFiltro = idFiltro != null && !idFiltro.isEmpty();
         if (usarFiltro) {
-            query += " WHERE cedula = ?";
+            query += " WHERE id = ?";
         }
 
         try (Connection con = Conexion.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
             if (usarFiltro) {
-                pst.setString(1, cedulaFiltro);
+                pst.setString(1, idFiltro);
             }
             ResultSet rs = pst.executeQuery();
             int rowCount = 0;
             while (rs.next()) {
                 modelTable.addRow(new Object[]{
-                        rs.getString("cedula"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido"),
+                        rs.getString("id"),
+                        rs.getString("nombre_apellido"),
                         rs.getString("correo"),
                         rs.getString("contrasenia"),
-                        rs.getString("telefono"),
                         rs.getString("rol")
                 });
                 rowCount++;

@@ -6,25 +6,62 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class reservasCRUD {
-    public void ingresarReserva(int idReserva,int cedulaCliente,int idServicio,int cedulaEmpleado,
-                                LocalDate fechaReserva,String estadoReserva,float precio,String descripcion) {
+    public boolean ingresarReserva(int idCliente,int idHorario,
+                                LocalDate fechaReserva,String descripcion) {
 
-        String query = "INSERT INTO reservas (id_reserva, cedula_cliente, id_servicio, cedula_encargado, fecha_reserva, estado_reserva, precio, observaciones)VALUES (?,?,?,?,?,?,?,?)";
-        try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1,idReserva);
-            ps.setInt(2,cedulaCliente);
-            ps.setInt(3,idServicio);
-            ps.setInt(4,cedulaEmpleado);
-            ps.setDate(5, Date.valueOf(fechaReserva));
-            ps.setString(6,estadoReserva);
-            ps.setFloat(7,precio);
-            ps.setString(8,descripcion);
-            ps.executeUpdate();
+        String query = "INSERT INTO reservas ( id_cliente, id_horario, fecha_reserva, observaciones)VALUES (?,?,?,?)";
+        String queryActualizacionEstado = "UPDATE horarios SET estado = 'inactivo' WHERE id_horario = ?";
+        Connection con = null;
+        PreparedStatement psReserva = null;
+        PreparedStatement psActualizarEstado = null;
+
+
+        try {
+            con = Conexion.getConnection();
+            con.setAutoCommit(false);
+            psReserva = con.prepareStatement(query);
+            psReserva.setInt(1, idCliente);
+            psReserva.setInt(2, idHorario);
+            psReserva.setDate(3, Date.valueOf(fechaReserva));
+            psReserva.setString(4, descripcion);
+            psReserva.executeUpdate();
             System.out.println("Reserva registrada correctamente");
 
-        } catch (SQLException e){
+            psActualizarEstado = con.prepareStatement(queryActualizacionEstado);
+            psActualizarEstado.setInt(1, idHorario);
+            psActualizarEstado.executeUpdate();
+            con.commit();
+            return true;//Confirma reserva
+
+        } catch (SQLException e) {
             e.printStackTrace();
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true);
+                    con.close();
+                }
+                if (psReserva != null) {
+                    psReserva.close();
+                }
+                if (psActualizarEstado != null) {
+                    psActualizarEstado.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException e0){
+                e0.printStackTrace();
+            }
         }
     }
     public boolean eliminarReserva(int idReserva){
@@ -45,20 +82,18 @@ public class reservasCRUD {
             return false;
         }
     }
-    public void actualizarReserva(int cedulaCliente,int idServicio,int cedulaEmpleado,
-                                  LocalDate fechaReserva,String estadoReserva,float precio,String descripcion,int idReserva){
-        String query = "UPDATE reservas SET cedula_cliente = ?, id_servicio = ?, cedula_encargado = ?," +
-                " fecha_reserva = ?, estado_reserva = ?, precio = ?, observaciones = ? WHERE id_reserva = ?";
+    public void actualizarReserva(int idCliente,int idHorario,
+                                  LocalDate fechaReserva,String estadoReserva,String descripcion,int idReserva){
+        String query = "UPDATE reservas SET id_cliente = ?, id_horario = ?," +
+                " fecha_reserva = ?, estado_reserva = ?, observaciones = ? WHERE id_reserva = ?";
         try(Connection con = Conexion.getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1,cedulaCliente);
-            ps.setInt(2,idServicio);
-            ps.setInt(3,cedulaEmpleado);
-            ps.setDate(4, Date.valueOf(fechaReserva));
-            ps.setString(5,estadoReserva);
-            ps.setFloat(6,precio);
-            ps.setString(7,descripcion);
-            ps.setInt(8,idReserva);
+            ps.setInt(1,idCliente);
+            ps.setInt(2,idHorario);
+            ps.setDate(3, Date.valueOf(fechaReserva));
+            ps.setString(4,estadoReserva);
+            ps.setString(5,descripcion);
+            ps.setInt(6,idReserva);
             ps.executeUpdate();
             System.out.println("Pago actualizado correctamente");
         }catch (SQLException e){

@@ -9,12 +9,13 @@ import java.awt.event.ActionListener;
 
 public class ingresarHorario {
     public JPanel ingresarHorarioPanel;
-    private JTextField textFieldCedula;
+    private JTextField textFieldIDEmpleado;
     private JTextField textFieldDia;
     private JTextField textFieldHoraInicio;
     private JTextField textFieldHoraFin;
     private JButton btnAgregarHorario;
     private JButton btnVolver;
+    private JTextField textFieldIdServicio;
 
     public ingresarHorario() {
         btnVolver.addActionListener(new ActionListener() {
@@ -34,12 +35,13 @@ public class ingresarHorario {
             @Override
             public void actionPerformed(ActionEvent e) {
                 horariosCRUD horCRUD = new horariosCRUD();
-                horCRUD.crearHorario(Integer.parseInt(textFieldCedula.getText()),textFieldDia.getText(),textFieldHoraInicio.getText(),textFieldHoraFin.getText());
+                horCRUD.crearHorario(Integer.parseInt(textFieldIDEmpleado.getText()),textFieldDia.getText(),textFieldHoraInicio.getText(),textFieldHoraFin.getText(),Integer.parseInt(textFieldIdServicio.getText()));
                 JOptionPane.showMessageDialog(null, "Horario agregado correctamente");
-                textFieldCedula.setText("");
+                textFieldIDEmpleado.setText("");
                 textFieldDia.setText("");
                 textFieldHoraInicio.setText("");
                 textFieldHoraFin.setText("");
+                textFieldIdServicio.setText("");
             }
         });
     }

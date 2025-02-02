@@ -6,29 +6,31 @@ import java.sql.*;
 
 public class horariosCRUD {
 
-    public void crearHorario(int cedulaEmpleado, String dia, String horaInicio, String horaFin) {
-        String query = "INSERT INTO horarios (cedula_empleado, dia_semana, hora_inicio, hora_fin, estado) VALUES (?, ?, ?, ?, 'activo')";
+    public void crearHorario(int cedulaEmpleado, String dia, String horaInicio, String horaFin, int idServicio) {
+        String query = "INSERT INTO horarios (cedula_empleado, dia_semana, hora_inicio, hora_fin, servicio, estado) VALUES (?, ?, ?, ?, ?, 'activo')";
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, cedulaEmpleado);
             ps.setString(2, dia);
             ps.setString(3, horaInicio);
             ps.setString(4, horaFin);
+            ps.setInt(5,idServicio);
             ps.executeUpdate();
             System.out.println("Horario creado correctamente.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void actualizarHorario(int cedulaEmpleado,String dia ,String HoraInicio, String HoraFin, String estado,int idHorario) {
-        String query = "UPDATE horarios SET cedula_empleado=?, dia_semana=?, hora_inicio=?, hora_fin=? , estado = ? WHERE id_horario=?";
+    public void actualizarHorario(int cedulaEmpleado,String dia ,String HoraInicio, String HoraFin,int idServicio, String estado,int idHorario) {
+        String query = "UPDATE horarios SET cedula_empleado=?, dia_semana=?, hora_inicio=?, hora_fin=? ,servicio = ?, estado = ? WHERE id_horario=?";
         try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, cedulaEmpleado);
             ps.setString(2, dia);
             ps.setString(3, HoraInicio);
             ps.setString(4, HoraFin);
-            ps.setString(5, estado);
-            ps.setInt(6, idHorario);
+            ps.setInt(5, idServicio);
+            ps.setString(6, estado);
+            ps.setInt(7, idHorario);
 
             ps.executeUpdate();
             System.out.println("Horario actualizado correctamente.");

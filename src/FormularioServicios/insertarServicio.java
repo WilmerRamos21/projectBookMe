@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class insertarServicio {
-    private JTextField textFieldIdServicio;
     private JTextField textFieldNombre;
     private JTextField textFieldDescripcion;
     private JTextField textFieldPrecio;
@@ -21,7 +20,7 @@ public class insertarServicio {
             @Override
             public void actionPerformed(ActionEvent e) {
                 serviciosCRUD servCRUD = new serviciosCRUD();
-                servCRUD.ingresarServicio(Integer.parseInt(textFieldIdServicio.getText()),textFieldNombre.getText(),textFieldDescripcion.getText(),Integer.parseInt(textFieldPrecio.getText()));
+                servCRUD.ingresarServicio(textFieldNombre.getText(),textFieldDescripcion.getText(),Integer.parseInt(textFieldPrecio.getText()));
                 JOptionPane.showMessageDialog(null, "Servicio insertado correctamente");
             }
         });

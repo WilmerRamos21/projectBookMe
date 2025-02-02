@@ -1,4 +1,5 @@
 package Login;
+import Empleado.sesionCorreo;
 import Register.registerBookMe;
 import Cliente.clienteBookMe;
 import Empleado.empleadoBookMe;
@@ -35,6 +36,7 @@ public class loginBookMe {
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(loginPanel).dispose();
             }
+
         });
         btnLogin.addActionListener(new ActionListener() {
             @Override
@@ -54,20 +56,26 @@ public class loginBookMe {
                     if (rol.isEmpty() || correo.isEmpty() || password.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"Debe llenar los campos vacios.");
                     }
-                    String sql = "SELECT rol FROM usuarios WHERE correo = ? AND contrasenia = ?";
+                    String sql = "SELECT id, rol FROM usuarios WHERE correo = ? AND contrasenia = ?";
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setString(1, correo);
                     ps.setString(2, password);
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
+                        int id = rs.getInt("id");
                         String rolDB = rs.getString("rol"); // Obtiene el rol de la base de datos
 
                         // Compara el rol ingresado con el rol de la base de datos
                         if (!rol.equalsIgnoreCase(rolDB)) {
                             JOptionPane.showMessageDialog(null, "El rol ingresado no coincide con el registrado.");
-                            return; // Sale del método sin abrir ninguna ventana
+                            return;
                         }
+                        sesionCorreo.setCorreo(correo);
+                        sesionCorreo.setID(id);
+                        System.out.println("Correo guardado en sesión: " + sesionCorreo.getCorreo());
+                        System.out.println("Id guardado en sesión: " + sesionCorreo.getID());
                         rol = rs.getString("rol");
+
                         JOptionPane.showMessageDialog(null,"Bienvenido "+rs.getString("rol"));
                         switch (rol.toLowerCase()) {
                             case "admin":

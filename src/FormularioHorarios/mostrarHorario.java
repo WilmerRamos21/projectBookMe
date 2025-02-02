@@ -24,10 +24,11 @@ public class mostrarHorario {
     public mostrarHorario() {
         DefaultTableModel modelTable = new DefaultTableModel();
         modelTable.addColumn("ID Horario");
-        modelTable.addColumn("Cedula Empleado");
+        modelTable.addColumn("ID Empleado");
         modelTable.addColumn("Dia");
         modelTable.addColumn("Hora Inicio");
         modelTable.addColumn("Hora Fin");
+        modelTable.addColumn("ID Servicio");
         modelTable.addColumn("Estado");
         tableHorarios.setModel(modelTable);
 
@@ -95,6 +96,7 @@ public class mostrarHorario {
                         rs.getString("dia_semana"),
                         rs.getString("hora_inicio"),
                         rs.getString("hora_fin"),
+                        rs.getString("servicio"),
                         rs.getString("estado")
                 });
                 rowCount++;

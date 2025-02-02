@@ -5,25 +5,61 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class pagosCRUD {
-    public void ingresarPago(int idPago,int cedulaCliente, int idServicio, float montoPago, LocalDate fechaPago,
-                             String metodoPago, String estadoPago,String descripcion) {
+    public boolean ingresarPago(int idCliente, int idReserva, LocalDate fechaPago,
+                             String metodoPago,String descripcion) {
 
-        String query = "INSERT INTO pagosRealizados (id_pago, cedula_cliente, id_servicio, monto, fecha_pago, metodo_pago, estado_pago, descripcion)VALUES (?,?,?,?,?,?,?,?)";
-        try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1,idPago);
-            ps.setInt(2,cedulaCliente);
-            ps.setInt(3,idServicio);
-            ps.setFloat(4,montoPago);
-            ps.setDate(5, Date.valueOf(fechaPago));
-            ps.setString(6,metodoPago);
-            ps.setString(7,estadoPago);
-            ps.setString(8,descripcion);
-            ps.executeUpdate();
+        String queryPago = "INSERT INTO pagosRealizados ( id_cliente, id_reserva, fecha_pago, metodo_pago, descripcion)VALUES (?,?,?,?,?)";
+        String queryActualizacionEstado = "UPDATE pagosRealizados SET estado_pago = 'Pagado' WHERE id_reserva = ?";
+        Connection con = null;
+        PreparedStatement psPago = null;
+        PreparedStatement psActualizarEstado = null;
+        try {
+            con = Conexion.getConnection();
+            con.setAutoCommit(false);
+            psPago = con.prepareStatement(queryPago);
+            psPago.setInt(1, idCliente);
+            psPago.setInt(2, idReserva);
+            psPago.setDate(3, Date.valueOf(fechaPago));
+            psPago.setString(4,metodoPago);
+            psPago.setString(5,descripcion);
+            psPago.executeUpdate();
             System.out.println("Pago insertado correctamente");
 
-        } catch (SQLException e){
+            psActualizarEstado = con.prepareStatement(queryActualizacionEstado);
+            psActualizarEstado.setInt(1, idReserva);
+            psActualizarEstado.executeUpdate();
+            con.commit();
+            return true;//Confirma reserva
+
+        } catch (SQLException e) {
             e.printStackTrace();
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true);
+                    con.close();
+                }
+                if (psPago != null) {
+                    psPago.close();
+                }
+                if (psActualizarEstado != null) {
+                    psActualizarEstado.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException e0){
+                e0.printStackTrace();
+            }
         }
     }
     public boolean eliminarPago(int idPago) {
@@ -44,20 +80,19 @@ public class pagosCRUD {
             return false;
         }
     }
-    public void actualizarPago(int cedulaCliente, int idServicio, float montoPago, LocalDate fechaPago,
-                                String metodoPago, String estadoPago,String descripcion, int idPago){
-        String query = "UPDATE pagosRealizados SET cedula_cliente = ?, id_servicio = ?, monto = ?, fecha_pago = ?, metodo_pago = ?, estado_pago = ?," +
-                " descripcion = ? WHERE id_pago = ?";
+    public void actualizarPago(int idCliente, int idReserva, LocalDate fechaPago,
+                                String metodoPago,String estadoPago,String descripcion, int idPago){
+        String query = "UPDATE pagosRealizados SET id_cliente = ?, id_reserva = ?, fecha_pago = ?, metodo_pago = ?," +
+                " descripcion = ?, estado_pago = ? WHERE id_pago = ?";
         try(Connection con = Conexion.getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1,cedulaCliente);
-            ps.setInt(2,idServicio);
-            ps.setFloat(3,montoPago);
-            ps.setDate(4, Date.valueOf(fechaPago));
-            ps.setString(5,metodoPago);
-            ps.setString(6,estadoPago);
-            ps.setString(7,descripcion);
-            ps.setInt(8,idPago);
+            ps.setInt(1,idCliente);
+            ps.setInt(2,idReserva);
+            ps.setDate(3, Date.valueOf(fechaPago));
+            ps.setString(4,metodoPago);
+            ps.setString(5,estadoPago);
+            ps.setString(6,descripcion);
+            ps.setInt(7,idPago);
             ps.executeUpdate();
             System.out.println("Pago actualizado correctamente");
         }catch (SQLException e){

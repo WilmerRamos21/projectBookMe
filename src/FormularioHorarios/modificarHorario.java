@@ -10,13 +10,14 @@ import java.awt.event.ActionListener;
 public class modificarHorario {
     public JPanel modificarHorarioPanel;
     private JTextField textFieldIdHorario;
-    private JTextField textFieldCedula;
+    private JTextField textFieldIdEmpleado;
     private JTextField textFieldDia;
     private JTextField textFieldHoraInicio;
     private JButton btnActualizar;
     private JButton btnVolver;
     private JTextField textFieldHoraFin;
     private JTextField textFieldEstado;
+    private JTextField textFieldIdServicio;
 
     public modificarHorario() {
         btnVolver.addActionListener(new ActionListener() {
@@ -36,13 +37,14 @@ public class modificarHorario {
             @Override
             public void actionPerformed(ActionEvent e) {
                 horariosCRUD horCRUD = new horariosCRUD();
-                horCRUD.actualizarHorario(Integer.parseInt(textFieldCedula.getText()),textFieldDia.getText(),textFieldHoraInicio.getText(),textFieldHoraFin.getText(),textFieldEstado.getText(),Integer.parseInt(textFieldIdHorario.getText()));
+                horCRUD.actualizarHorario(Integer.parseInt(textFieldIdEmpleado.getText()),textFieldDia.getText(),textFieldHoraInicio.getText(),textFieldHoraFin.getText(),Integer.parseInt(textFieldIdServicio.getText()),textFieldEstado.getText(),Integer.parseInt(textFieldIdHorario.getText()));
                 JOptionPane.showMessageDialog(null, "Horario actualizado correctamente");
                 textFieldIdHorario.setText("");
-                textFieldCedula.setText("");
+                textFieldIdEmpleado.setText("");
                 textFieldDia.setText("");
                 textFieldHoraInicio.setText("");
                 textFieldHoraFin.setText("");
+                textFieldIdServicio.setText("");
                 textFieldEstado.setText("");
             }
         });

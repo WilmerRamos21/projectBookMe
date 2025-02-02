@@ -24,12 +24,8 @@ public class mostrarReservas {
     public mostrarReservas() {
         DefaultTableModel modelTable = new DefaultTableModel();
         modelTable.addColumn("ID Reserva");
-        modelTable.addColumn("Cliente");
-        modelTable.addColumn("ID Servicio");
-        modelTable.addColumn("Empleado");
+        modelTable.addColumn("ID Horario");
         modelTable.addColumn("Fecha Reserva");
-        modelTable.addColumn("Estado Reserva");
-        modelTable.addColumn("Precio");
         modelTable.addColumn("Observaciones");
         tableDatosReservas.setModel(modelTable);
 
@@ -84,12 +80,8 @@ public class mostrarReservas {
             while (rs.next()) {
                 modelTable.addRow(new Object[]{
                         rs.getString("id_reserva"),
-                        rs.getString("cedula_cliente"),
-                        rs.getString("id_servicio"),
-                        rs.getString("cedula_encargado"),
+                        rs.getString("id_horario"),
                         rs.getString("fecha_reserva"),
-                        rs.getString("estado_reserva"),
-                        rs.getString("precio"),
                         rs.getString("observaciones")
                 });
                 rowCount++;

@@ -5,15 +5,14 @@ import conexion.Conexion;
 import java.sql.*;
 
 public class serviciosCRUD {
-    public void ingresarServicio(int idServicio, String nombreServicio, String descripcionServicio, float precioServicio) {
+    public void ingresarServicio( String nombreServicio, String descripcionServicio, float precioServicio) {
 
-        String query = "INSERT INTO servicios (id_servicio, nombre_servicio, descripcion, precio) VALUES(?,?,?,?)";
+        String query = "INSERT INTO servicios ( nombre_servicio, descripcion, precio) VALUES(?,?,?)";
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1,idServicio);
-            ps.setString(2,nombreServicio);
-            ps.setString(3,descripcionServicio);
-            ps.setFloat(4,precioServicio);
+            ps.setString(1,nombreServicio);
+            ps.setString(2,descripcionServicio);
+            ps.setFloat(3,precioServicio);
             ps.executeUpdate();
             System.out.println("Servicio insertado correctamente");
         } catch (SQLException e){

@@ -10,12 +10,9 @@ import java.time.LocalDate;
 
 public class ingresarPagos {
     public JPanel ingresarPagosPanel;
-    private JTextField textFieldIdPago;
-    private JTextField textFieldCedulaCliente;
-    private JTextField textFieldIdServicio;
-    private JTextField textFieldMontoPago;
+    private JTextField textFieldIdCliente;
+    private JTextField textFieldIdReserva;
     private JTextField textFieldMetodoPago;
-    private JTextField textFieldEstadoPago;
     private JTextField textFieldDescripcion;
     private JButton btnIngresarPago;
     private JButton btnVolver;
@@ -38,15 +35,12 @@ public class ingresarPagos {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pagosCRUD payCRUD = new pagosCRUD();
-                payCRUD.ingresarPago(Integer.parseInt(textFieldIdPago.getText()),Integer.parseInt(textFieldCedulaCliente.getText()),Integer.parseInt(textFieldIdServicio.getText()),
-                        Integer.parseInt(textFieldMontoPago.getText()), LocalDate.now(),textFieldMetodoPago.getText(),textFieldEstadoPago.getText(),textFieldDescripcion.getText());
+                payCRUD.ingresarPago(Integer.parseInt(textFieldIdCliente.getText()),Integer.parseInt(textFieldIdReserva.getText()),
+                        LocalDate.now(),textFieldMetodoPago.getText(),textFieldDescripcion.getText());
                 JOptionPane.showMessageDialog(null, "Pago insertado correctamente","Ingresar Pago",JOptionPane.INFORMATION_MESSAGE);
-                textFieldIdPago.setText("");
-                textFieldCedulaCliente.setText("");
-                textFieldIdServicio.setText("");
-                textFieldMontoPago.setText("");
+                textFieldIdCliente.setText("");
+                textFieldIdReserva.setText("");
                 textFieldMetodoPago.setText("");
-                textFieldEstadoPago.setText("");
                 textFieldDescripcion.setText("");
             }
         });

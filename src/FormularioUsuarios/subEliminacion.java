@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class subEliminacion {
-    private JTextField textFieldCedula;
+    private JTextField textFieldId;
     private JButton btnEliminar;
     private JButton btnVolver;
     public JPanel eliminacionPanel;
@@ -31,37 +31,37 @@ public class subEliminacion {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    if (textFieldCedula.getText().isEmpty()) {
+                    if (textFieldId.getText().isEmpty()) {
                         JOptionPane.showConfirmDialog(null,"Por favor ingrese la cedula del usuario.");
                         return;
                     }
-                    int cedula = Integer.parseInt(textFieldCedula.getText());
+                    int id = Integer.parseInt(textFieldId.getText());
                     int confirm = JOptionPane.showConfirmDialog(
                             null,
-                            "Estas seguro de eliminar el usuario "+cedula+"?",
+                            "Estas seguro de eliminar el usuario "+id+"?",
                             "Confirmar eliminación",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.WARNING_MESSAGE);
                     if (confirm == JOptionPane.YES_OPTION) {
                         usuariosCRUD usuarios = new usuariosCRUD();
-                        boolean eliminado = usuarios.eliminarUsuario(cedula);
+                        boolean eliminado = usuarios.eliminarUsuario(id);
                         if (eliminado) {
                             JOptionPane.showMessageDialog(null, "Usuario eliminado exitosamente","Exito",JOptionPane.INFORMATION_MESSAGE);
-                            textFieldCedula.setText("");
+                            textFieldId.setText("");
                         }else{
                             JOptionPane.showMessageDialog(null, "Usuario no encontrado","Error",JOptionPane.ERROR_MESSAGE);
-                            textFieldCedula.setText("");
+                            textFieldId.setText("");
                         }
                     } else{
                         JOptionPane.showMessageDialog(null, "Acción cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
-                        textFieldCedula.setText("");
+                        textFieldId.setText("");
                     }
                 }catch (NumberFormatException e0){
-                    JOptionPane.showMessageDialog(null, "La cedula debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                    textFieldCedula.setText("");
+                    JOptionPane.showMessageDialog(null, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    textFieldId.setText("");
                 }catch (Exception e1){
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar eliminar el servicio.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar eliminar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
