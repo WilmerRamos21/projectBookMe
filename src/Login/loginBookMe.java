@@ -1,5 +1,6 @@
 package Login;
 import Empleado.sesionCorreo;
+import FormularioUsuarios.usuariosCRUD;
 import Register.registerBookMe;
 import Cliente.clienteBookMe;
 import Empleado.empleadoBookMe;
@@ -22,8 +23,15 @@ public class loginBookMe {
     public JPanel loginPanel;
     private JButton btnLogin;
     private JButton btnResgister;
+    private JComboBox comboBoxRol;
+
 
     public loginBookMe() {
+
+        comboBoxRol.addItem("Admin");
+        comboBoxRol.addItem("Empleado");
+        comboBoxRol.addItem("Cliente");
+        comboBoxRol.setVisible(true);
         btnResgister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,38 +50,42 @@ public class loginBookMe {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Connection con;
+                Connection con = null;
                 try {
                     con = Conexion.getConnection();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
                 try{
-                    String rol = textFieldRol.getText();
+                    String rol = comboBoxRol.getSelectedItem().toString();
                     String correo = textFieldCorreo.getText();
                     String password = String.valueOf(passwordField2.getPassword());
 
-                    if (rol.isEmpty() || correo.isEmpty() || password.isEmpty()) {
-                        JOptionPane.showMessageDialog(null,"Debe llenar los campos vacios.");
-                    }
-                    String sql = "SELECT id, rol FROM usuarios WHERE correo = ? AND contrasenia = ?";
+                    String sql = "SELECT id, rol, contrasenia FROM usuarios WHERE correo = ?";
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setString(1, correo);
-                    ps.setString(2, password);
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
                         int id = rs.getInt("id");
                         String rolDB = rs.getString("rol"); // Obtiene el rol de la base de datos
+                        String storedHashedPass = rs.getString("contrasenia");// Obtiene la contraseña almacenda en la BDD
 
                         // Compara el rol ingresado con el rol de la base de datos
                         if (!rol.equalsIgnoreCase(rolDB)) {
-                            JOptionPane.showMessageDialog(null, "El rol ingresado no coincide con el registrado.");
+                            JOptionPane.showMessageDialog(null, "El rol ingresado no coincide con el registrado.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
+                        //Compara la contraseña hasheada ingresada por el usario con la almacenada en la BDD
+                        usuariosCRUD usuC = new usuariosCRUD();
+                        if (usuC.checkPassword(password, storedHashedPass)) {
+                            System.out.println("Usuario encontrado");
+                        }
+                        //Almacena los datos del usaurio para luego usarlos en el funcionamiento del programa
                         sesionCorreo.setCorreo(correo);
                         sesionCorreo.setID(id);
                         System.out.println("Correo guardado en sesión: " + sesionCorreo.getCorreo());
                         System.out.println("Id guardado en sesión: " + sesionCorreo.getID());
+
                         rol = rs.getString("rol");
 
                         JOptionPane.showMessageDialog(null,"Bienvenido "+rs.getString("rol"));
@@ -109,14 +121,14 @@ public class loginBookMe {
                                 SwingUtilities.getWindowAncestor(loginPanel).dispose();
                                 break;
                             default:
-                                JOptionPane.showMessageDialog(null,"Rol desconocido");
+                                JOptionPane.showMessageDialog(null,"Rol desconocido","Error",JOptionPane.ERROR_MESSAGE);
                         }
                     }else {
-                        JOptionPane.showMessageDialog(null,"Usuario no encontrado");
+                        JOptionPane.showMessageDialog(null,"Usuario no encontrado","Error",JOptionPane.ERROR_MESSAGE);
                     }
                 }catch (Exception a){
                     a.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Error inesperado.");
+                    JOptionPane.showMessageDialog(null,"Error inesperado.","Error",JOptionPane.ERROR_MESSAGE);
                 } finally {
                     try {
                         if (con != null) {

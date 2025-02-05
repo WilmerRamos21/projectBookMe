@@ -11,13 +11,14 @@ public class usuariosCRUD {
     public void ingresarUsuarios( String nombreApellido,
                                  String email, String pass,
                                  String rol) {
+        String hashedPass = hashPassword(pass);
 
         String query = "INSERT INTO usuarios (nombre_apellido, correo, contrasenia, rol) VALUES(?,?,?,?)";
         try (Connection con= Conexion.getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
             ps.setString(1,nombreApellido);
             ps.setString(2,email);
-            ps.setString(3,pass);
+            ps.setString(3,hashedPass);
             ps.setString(4,rol);
             ps.executeUpdate();
             System.out.println("Datos ingresados correctamente");
@@ -27,12 +28,13 @@ public class usuariosCRUD {
     }
     public void modificarUsuarios(String nombreApellido, String email, String pass,
                                   String rol,int id){
+        String hashedPass = hashPassword(pass);
         String query = "UPDATE usuarios set nombre_apellido = ?, correo = ?, contrasenia = ?, rol = ? where id = ?";
         try (Connection con= Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(query)){
                 ps.setString(1,nombreApellido);
                 ps.setString(2,email);
-                ps.setString(3,pass);
+                ps.setString(3,hashedPass);
                 ps.setString(4,rol);
                 ps.setInt(5, id);
                 ps.executeUpdate();
@@ -43,11 +45,12 @@ public class usuariosCRUD {
     }
     public void modificarUsuarioEmpleado(String nombreApellido, String email, String pass, int id){
         String query = "UPDATE usuarios set nombre_apellido = ?, correo = ?, contrasenia = ? where id = ?";
+        String hashedPass = hashPassword(pass);
         try (Connection con= Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(query)){
             ps.setString(1,nombreApellido);
             ps.setString(2,email);
-            ps.setString(3,pass);
+            ps.setString(3,hashedPass);
             ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("Datos modificados correctamente");
@@ -89,21 +92,11 @@ public class usuariosCRUD {
             throw new RuntimeException(e);
         }
     }
+    public boolean checkPassword(String inputPassword, String storedHashedPassword){
+        String hashedInputPassword = hashPassword(inputPassword);
+        return hashedInputPassword.equals(storedHashedPassword);
+    }
 
-    public boolean existeCedula(int cedula) {
-        String query = "SELECT COUNT(*) FROM usuarios WHERE cedula = ?";
-        try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setInt(1, cedula);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0; // Retorna true si la cédula ya existe
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-        }
     public boolean existeCorreo(String correo) {
         String query = "SELECT COUNT(*) FROM usuarios WHERE correo = ?";
         try (Connection con = Conexion.getConnection();

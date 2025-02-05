@@ -36,10 +36,7 @@ public class subEliminacion {
                         return;
                     }
                     int id = Integer.parseInt(textFieldId.getText());
-                    int confirm = JOptionPane.showConfirmDialog(
-                            null,
-                            "Estas seguro de eliminar el usuario "+id+"?",
-                            "Confirmar eliminación",
+                    int confirm = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el usuario "+id+"?", "Confirmar eliminación",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.WARNING_MESSAGE);
                     if (confirm == JOptionPane.YES_OPTION) {

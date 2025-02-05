@@ -56,4 +56,17 @@ public class horariosCRUD {
             return false;
         }
     }
+    // Metodo para verificar si el horario se encuentra en la BDD
+    public boolean existeHorario(int idHorario) {
+        String sql = "SELECT id_horario FROM horarios WHERE id_horario = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idHorario);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // Devuelve true si el ID existe, false si no existe
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // En caso de error, asumimos que el ID no existe
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package Cliente;
 
 
+import FormularioHorarios.horariosCRUD;
 import FormularioReservas.reservasCRUD;
 import Empleado.sesionCorreo;
 
@@ -24,18 +25,30 @@ public class hacerReserva {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reservasCRUD resCRUD = new reservasCRUD();
-                int idCliente = sesionCorreo.getID();
+                int idClienteSesion = sesionCorreo.getID();
+                int idClienteIngresado = Integer.parseInt(textFieldIdCliente.getText());
                 int idHorario = Integer.parseInt(textFieldIdHorario.getText());
                 LocalDate fecha = LocalDate.now();
                 String observaciones = textFieldObservaciones.getText();
+                try{
+                    horariosCRUD hCRUD = new horariosCRUD();
+                    if (!hCRUD.existeHorario(idHorario)){
+                        JOptionPane.showMessageDialog(null,"El ID de ese horario no existe.","Error",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    } else if(idClienteIngresado != idClienteSesion){
+                        JOptionPane.showMessageDialog(null, "No puede realizar la reserva con el ID de otro usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
 
-                if (resCRUD.ingresarReserva(idCliente,idHorario,fecha,observaciones)){
-                JOptionPane.showMessageDialog(null, "Reserva insertada correctamente","Hacer Reserva",JOptionPane.INFORMATION_MESSAGE);
-                textFieldIdCliente.setText("");
-                textFieldIdHorario.setText("");
-                textFieldObservaciones.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo realizar la reserva","Hacer Reserva",JOptionPane.ERROR_MESSAGE);
+                    if (resCRUD.ingresarReserva(idClienteIngresado,idHorario,fecha,observaciones)){
+                        JOptionPane.showMessageDialog(null, "Reserva insertada correctamente.","Hacer Reserva",JOptionPane.INFORMATION_MESSAGE);
+                        textFieldIdCliente.setText("");
+                        textFieldIdHorario.setText("");
+                        textFieldObservaciones.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo realizar la reserva.","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch (NumberFormatException e1){
+                    JOptionPane.showMessageDialog(null, "Por favor ingresa valores númericos válidos.","Error",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

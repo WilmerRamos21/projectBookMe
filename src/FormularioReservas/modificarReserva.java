@@ -13,12 +13,20 @@ public class modificarReserva {
     private JTextField textFieldIdReserva;
     private JTextField textFieldIdCliente;
     private JTextField textFieldIdHorario;
-    private JTextField textFieldEstadoReserva;
-    private JTextField textFieldObservaciones;
     private JButton btnModificar;
     private JButton btnVolver;
+    private JComboBox comboBoxEstadoReserva;
+    private JComboBox comboBoxObservaciones;
 
     public modificarReserva() {
+        comboBoxEstadoReserva.addItem("Pendiente");
+        comboBoxEstadoReserva.addItem("Cancelada");
+        comboBoxEstadoReserva.addItem("Completada");
+        comboBoxEstadoReserva.setVisible(true);
+        comboBoxObservaciones.addItem("Ninguno");
+        comboBoxObservaciones.addItem("Hubo un problema");
+        comboBoxObservaciones.setVisible(true);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,15 +43,35 @@ public class modificarReserva {
         btnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reservasCRUD resCRUD = new reservasCRUD();
-                resCRUD.actualizarReserva(Integer.parseInt(textFieldIdCliente.getText()),Integer.parseInt(textFieldIdHorario.getText()),
-                        LocalDate.now(),textFieldEstadoReserva.getText(),textFieldObservaciones.getText(),Integer.parseInt(textFieldIdReserva.getText()));
-                JOptionPane.showMessageDialog(null, "Reserva modificada correctamente","Modificar Reserva",JOptionPane.INFORMATION_MESSAGE);
-                textFieldIdReserva.setText("");
-                textFieldIdCliente.setText("");
-                textFieldIdHorario.setText("");
-                textFieldEstadoReserva.setText("");
-                textFieldObservaciones.setText("");
+                try{
+                    if(textFieldIdCliente.getText().isEmpty() || textFieldIdHorario.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacios",JOptionPane.INFORMATION_MESSAGE);
+                    } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
+                    JOptionPane.showMessageDialog(null,"El ID de cliente solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
+                    } else if (textFieldIdHorario.getText().matches("[0-9]+")) {
+                    JOptionPane.showMessageDialog(null,"El ID horario solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
+                    } else if (textFieldIdReserva.getText().matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(null,"El ID de la reserva solo permite valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        reservasCRUD resCRUD = new reservasCRUD();
+                        resCRUD.actualizarReserva(Integer.parseInt(textFieldIdCliente.getText()),
+                                Integer.parseInt(textFieldIdHorario.getText()),
+                                LocalDate.now(),
+                                comboBoxEstadoReserva.getActionCommand(),
+                                comboBoxObservaciones.getActionCommand(),
+                                Integer.parseInt(textFieldIdReserva.getText()));
+                        JOptionPane.showMessageDialog(null, "Reserva modificada correctamente", "Modificar Reserva", JOptionPane.INFORMATION_MESSAGE);
+                        textFieldIdReserva.setText("");
+                        textFieldIdCliente.setText("");
+                        textFieldIdHorario.setText("");
+                    }
+                }catch(NumberFormatException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Ingrese un número valido","Error",JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "ha ocurrido un error inesperado","Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

@@ -13,12 +13,15 @@ public class subActualizacion {
     private JTextField textFieldNombre;
     private JTextField textFieldCorreo;
     private JPasswordField JFielContrasenia;
-    private JTextField textFieldRol;
     private JButton btnActualizar;
     private JButton btnVolver;
+    private JComboBox comboBoxRol;
 
     public subActualizacion() {
-        // Simulación de la obtención del rol del usuario autenticado// Debes implementar esta función
+        comboBoxRol.addItem("Admin");
+        comboBoxRol.addItem("Empleado");
+        comboBoxRol.addItem("Cliente");
+        comboBoxRol.setVisible(true);
 
         btnVolver.addActionListener(new ActionListener() {
             @Override
@@ -39,50 +42,48 @@ public class subActualizacion {
             public void actionPerformed(ActionEvent e) {
                 usuariosCRUD UC = new usuariosCRUD();
                 String password = new String(JFielContrasenia.getPassword());
-                if (password.isEmpty() || textFieldId.getText().isEmpty() || textFieldNombre.getText().isEmpty() ||
-                        textFieldCorreo.getText().isEmpty() ||
-                        textFieldRol.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
-                } else if (textFieldId.getText().length() != 10) {
-                    JOptionPane.showMessageDialog(null, "La cédula debe tener 10 dígitos", "Cédula incorrecta", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!textFieldRol.getText().equalsIgnoreCase("empleado") && !textFieldRol.getText().equalsIgnoreCase("cliente")) {
-                    JOptionPane.showMessageDialog(null, "El rol debe ser 'empleado' o 'cliente'", "Rol incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!validarCorreo(textFieldCorreo.getText())) {
-                    JOptionPane.showMessageDialog(null, "El correo debe tener un formato válido (ejemplo: usuario@dominio.com)", "Correo incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!textFieldId.getText().matches("[0-9]+")) {
-                    JOptionPane.showMessageDialog(null, "La cédula solo puede contener números", "Cédula incorrecta", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!textFieldRol.getText().matches("[a-zA-Z]+")) {
-                    JOptionPane.showMessageDialog(null, "El rol solo puede contener letras", "Rol incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!textFieldNombre.getText().matches("[a-zA-Z ]+")) {
-                    JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else if (UC.existeCorreo(textFieldCorreo.getText())) {
-                    JOptionPane.showMessageDialog(null, "El correo ya está registrado", "Correo duplicado", JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                try{
+                    if (password.isEmpty() || textFieldId.getText().isEmpty() || textFieldNombre.getText().isEmpty() ||
+                            textFieldCorreo.getText().isEmpty() ) {
+                        JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!comboBoxRol.getSelectedItem().toString().equals("Cliente")&& !comboBoxRol.getSelectedItem().toString().equals("Empleado")) {
+                        JOptionPane.showMessageDialog(null, "El rol debe ser 'Empleado' o 'Cliente'", "Rol incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!validarCorreo(textFieldCorreo.getText())) {
+                        JOptionPane.showMessageDialog(null, "El correo debe tener un formato válido (ejemplo: usuario@dominio.com)", "Correo incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!textFieldId.getText().matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!textFieldNombre.getText().matches("[a-zA-Z ]+")) {
+                        JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else{
 
-                UC.modificarUsuarios(
-                        textFieldNombre.getText(),
-                        textFieldCorreo.getText(),
-                        password,
-                        textFieldRol.getText(), // Aunque esté deshabilitado, el valor sigue siendo accesible
-                        Integer.parseInt(textFieldId.getText())
-                );
-
-                JOptionPane.showMessageDialog(actualizarPanel, "Datos actualizados exitosamente");
-                limpiarCampos();
-
-            }
+                        UC.modificarUsuarios(
+                                textFieldNombre.getText(),
+                                textFieldCorreo.getText(),
+                                password,
+                                comboBoxRol.getActionCommand(),
+                                Integer.parseInt(textFieldId.getText())
+                        );
+                        JOptionPane.showMessageDialog(actualizarPanel, "Datos actualizados exitosamente","Ingreso exitosamente", JOptionPane.INFORMATION_MESSAGE);
+                        limpiarCampos();
+                    }
+                }catch (NumberFormatException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El ID es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al modificar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
             //Metodo para validar los campos de correo
             private boolean validarCorreo(String correo) {
-                String regex = "^(?:(?:[A-Za-z0-9+_.-]+@gmail\\.com)|(?:[A-Za-z0-9+_.-]+@outlook\\.com)|(?:[A-Za-z0-9+_.-]+@epn\\.edu\\.ec))$";
-                return correo.matches(regex);
+                String verfCorreo = "^(?:([A-Za-z0-9+_.-]+@gmail\\.com)|([A-Za-z0-9+_.-]+@outlook\\.com)|(?:[A-Za-z0-9+_.-]+@epn\\.edu\\.ec))$";
+                return correo.matches(verfCorreo);
             }
             private void limpiarCampos() {
                 textFieldId.setText("");
                 textFieldNombre.setText("");
                 textFieldCorreo.setText("");
                 JFielContrasenia.setText("");
-                textFieldRol.setText("");
             }
         });
     }

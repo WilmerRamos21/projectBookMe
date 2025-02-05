@@ -18,8 +18,46 @@ public class modificarHorario {
     private JTextField textFieldHoraFin;
     private JTextField textFieldEstado;
     private JTextField textFieldIdServicio;
+    private JComboBox comboBoxDia;
+    private JComboBox comboBoxHoraInicio;
+    private JComboBox comboBoxHoraFin;
+    private JComboBox comboBoxEstado;
 
     public modificarHorario() {
+        comboBoxDia.addItem("Lunes");
+        comboBoxDia.addItem("Martes");
+        comboBoxDia.addItem("Miércoles");
+        comboBoxDia.addItem("Jueves");
+        comboBoxDia.addItem("Viernes");
+        comboBoxDia.addItem("Sábado");
+        comboBoxDia.addItem("Domingo");
+        comboBoxDia.setVisible(true);
+        comboBoxHoraInicio.addItem("8:00");
+        comboBoxHoraInicio.addItem("9:00");
+        comboBoxHoraInicio.addItem("10:00");
+        comboBoxHoraInicio.addItem("11:00");
+        comboBoxHoraInicio.addItem("13:00");
+        comboBoxHoraInicio.addItem("14:00");
+        comboBoxHoraInicio.addItem("15:00");
+        comboBoxHoraInicio.addItem("16:00");
+        comboBoxHoraInicio.addItem("17:00");
+        comboBoxHoraInicio.addItem("18:00");
+        comboBoxHoraInicio.setVisible(true);
+        comboBoxHoraFin.addItem("9:00");
+        comboBoxHoraFin.addItem("10:00");
+        comboBoxHoraFin.addItem("11:00");
+        comboBoxHoraFin.addItem("12:00");
+        comboBoxHoraFin.addItem("14:00");
+        comboBoxHoraFin.addItem("15:00");
+        comboBoxHoraFin.addItem("16:00");
+        comboBoxHoraFin.addItem("17:00");
+        comboBoxHoraFin.addItem("18:00");
+        comboBoxHoraFin.addItem("19:00");
+        comboBoxHoraFin.setVisible(true);
+        comboBoxEstado.addItem("activo");
+        comboBoxEstado.addItem("inactivo");
+        comboBoxEstado.setVisible(true);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,16 +74,32 @@ public class modificarHorario {
         btnActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                horariosCRUD horCRUD = new horariosCRUD();
-                horCRUD.actualizarHorario(Integer.parseInt(textFieldIdEmpleado.getText()),textFieldDia.getText(),textFieldHoraInicio.getText(),textFieldHoraFin.getText(),Integer.parseInt(textFieldIdServicio.getText()),textFieldEstado.getText(),Integer.parseInt(textFieldIdHorario.getText()));
-                JOptionPane.showMessageDialog(null, "Horario actualizado correctamente");
-                textFieldIdHorario.setText("");
-                textFieldIdEmpleado.setText("");
-                textFieldDia.setText("");
-                textFieldHoraInicio.setText("");
-                textFieldHoraFin.setText("");
-                textFieldIdServicio.setText("");
-                textFieldEstado.setText("");
+                try{
+                    if(textFieldIdServicio.getText().matches("[0-9]+")){
+                        JOptionPane.showMessageDialog(null, "El ID del servicio solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else if (textFieldIdServicio.getText().matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(null,"El ID del empleado solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        horariosCRUD horCRUD = new horariosCRUD();
+                        horCRUD.actualizarHorario(Integer.parseInt(textFieldIdEmpleado.getText()),
+                                comboBoxDia.getActionCommand(),
+                                comboBoxHoraInicio.getActionCommand(),
+                                comboBoxHoraFin.getActionCommand(),
+                                Integer.parseInt(textFieldIdServicio.getText()),
+                                comboBoxEstado.getActionCommand(),
+                                Integer.parseInt(textFieldIdHorario.getText()));
+                        JOptionPane.showMessageDialog(null, "Horario actualizado correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                        textFieldIdHorario.setText("");
+                        textFieldIdEmpleado.setText("");
+                        textFieldIdServicio.setText("");
+                    }
+                } catch(NumberFormatException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),"Error númerico",JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

@@ -12,11 +12,14 @@ public class ingresarReserva {
     public JPanel registrarReservaPanel;
     private JTextField textFieldIdCliente;
     private JTextField textFieldIdHorario;
-    private JTextField textFieldDescripcion;
     private JButton btnIngresarReserva;
     private JButton btnVolver;
+    private JComboBox comboBoxObservaciones;
 
     public ingresarReserva() {
+        comboBoxObservaciones.addItem("Ninguno");
+        comboBoxObservaciones.addItem("Hubo un problema");
+        comboBoxObservaciones.setVisible(true);
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,13 +36,28 @@ public class ingresarReserva {
         btnIngresarReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reservasCRUD resCRUD = new reservasCRUD();
-                resCRUD.ingresarReserva(Integer.parseInt(textFieldIdCliente.getText()),Integer.parseInt(textFieldIdHorario.getText()),
-                        LocalDate.now(),textFieldDescripcion.getText());
-                JOptionPane.showMessageDialog(null, "Reserva insertada correctamente","Ingresar Reserva",JOptionPane.INFORMATION_MESSAGE);
-                textFieldIdCliente.setText("");
-                textFieldIdHorario.setText("");
-                textFieldDescripcion.setText("");
+                try {
+                    if(textFieldIdCliente.getText().isEmpty() || textFieldIdHorario.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacios",JOptionPane.INFORMATION_MESSAGE);
+                    } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
+                        JOptionPane.showMessageDialog(null,"El ID de cliente solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
+                    } else if (textFieldIdHorario.getText().matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(null,"El ID horario solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        reservasCRUD resCRUD = new reservasCRUD();
+                        resCRUD.ingresarReserva(Integer.parseInt(textFieldIdCliente.getText()), Integer.parseInt(textFieldIdHorario.getText()),
+                            LocalDate.now(), comboBoxObservaciones.getActionCommand());
+                        JOptionPane.showMessageDialog(null, "Reserva insertada correctamente", "Ingresar Reserva", JOptionPane.INFORMATION_MESSAGE);
+                        textFieldIdCliente.setText("");
+                        textFieldIdHorario.setText("");
+                }
+                }catch(NumberFormatException nfe){
+                    nfe.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Ingrese un número valido", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado. Por favor intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

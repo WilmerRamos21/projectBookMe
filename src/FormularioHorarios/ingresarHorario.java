@@ -1,5 +1,4 @@
 package FormularioHorarios;
-
 import Horarios_Gestion.gestionarHorarios;
 
 import javax.swing.*;
@@ -10,14 +9,45 @@ import java.awt.event.ActionListener;
 public class ingresarHorario {
     public JPanel ingresarHorarioPanel;
     private JTextField textFieldIDEmpleado;
-    private JTextField textFieldDia;
-    private JTextField textFieldHoraInicio;
-    private JTextField textFieldHoraFin;
     private JButton btnAgregarHorario;
     private JButton btnVolver;
     private JTextField textFieldIdServicio;
+    private JComboBox comboBoxDia;
+    private JComboBox comboBoxHoraInicio;
+    private JComboBox comboBoxHoraFin;
 
     public ingresarHorario() {
+        comboBoxDia.addItem("Lunes");
+        comboBoxDia.addItem("Martes");
+        comboBoxDia.addItem("Miércoles");
+        comboBoxDia.addItem("Jueves");
+        comboBoxDia.addItem("Viernes");
+        comboBoxDia.addItem("Sábado");
+        comboBoxDia.addItem("Domingo");
+        comboBoxDia.setVisible(true);
+        comboBoxHoraInicio.addItem("8:00");
+        comboBoxHoraInicio.addItem("9:00");
+        comboBoxHoraInicio.addItem("10:00");
+        comboBoxHoraInicio.addItem("11:00");
+        comboBoxHoraInicio.addItem("13:00");
+        comboBoxHoraInicio.addItem("14:00");
+        comboBoxHoraInicio.addItem("15:00");
+        comboBoxHoraInicio.addItem("16:00");
+        comboBoxHoraInicio.addItem("17:00");
+        comboBoxHoraInicio.addItem("18:00");
+        comboBoxHoraInicio.setVisible(true);
+        comboBoxHoraFin.addItem("9:00");
+        comboBoxHoraFin.addItem("10:00");
+        comboBoxHoraFin.addItem("11:00");
+        comboBoxHoraFin.addItem("12:00");
+        comboBoxHoraFin.addItem("14:00");
+        comboBoxHoraFin.addItem("15:00");
+        comboBoxHoraFin.addItem("16:00");
+        comboBoxHoraFin.addItem("17:00");
+        comboBoxHoraFin.addItem("18:00");
+        comboBoxHoraFin.addItem("19:00");
+        comboBoxHoraFin.setVisible(true);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,14 +64,28 @@ public class ingresarHorario {
         btnAgregarHorario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                horariosCRUD horCRUD = new horariosCRUD();
-                horCRUD.crearHorario(Integer.parseInt(textFieldIDEmpleado.getText()),textFieldDia.getText(),textFieldHoraInicio.getText(),textFieldHoraFin.getText(),Integer.parseInt(textFieldIdServicio.getText()));
-                JOptionPane.showMessageDialog(null, "Horario agregado correctamente");
-                textFieldIDEmpleado.setText("");
-                textFieldDia.setText("");
-                textFieldHoraInicio.setText("");
-                textFieldHoraFin.setText("");
-                textFieldIdServicio.setText("");
+                try{
+                    if(textFieldIdServicio.getText().matches("[0-9]+")){
+                        JOptionPane.showMessageDialog(null, "El ID del servicio solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else if (textFieldIdServicio.getText().matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(null,"El ID del empleado solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else{
+                        horariosCRUD horCRUD = new horariosCRUD();
+                        horCRUD.crearHorario(Integer.parseInt(textFieldIDEmpleado.getText()),
+                                comboBoxDia.getActionCommand(),
+                                comboBoxHoraInicio.getActionCommand(),
+                                comboBoxHoraFin.getActionCommand(),
+                                Integer.parseInt(textFieldIdServicio.getText()));
+                        JOptionPane.showMessageDialog(null, "Horario agregado correctamente");
+                        textFieldIDEmpleado.setText("");
+                        textFieldIdServicio.setText("");}
+                }catch (NumberFormatException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Ingrese valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al agregar horario", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
