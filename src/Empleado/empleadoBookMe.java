@@ -17,9 +17,52 @@ public class empleadoBookMe {
     private JButton btnPerfil;
     private JButton btnMostrar;
     private JButton btnModificarReservas;
+    private JLabel cerrarSesion;
+    private JLabel imgReservas;
+    private JLabel imgServicios;
+    private JLabel imgHorarios;
+    private JLabel imgMostrar;
+    private JLabel imgPerfil;
+    private JLabel imgModificarReservas;
 
 
     public empleadoBookMe() {
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Images/Gestiones/cerrarSesion.png"));
+        Image imagen = icono.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        cerrarSesion.setIcon(iconoRedimensionado);
+
+        ImageIcon icono1 = new ImageIcon(getClass().getResource("/Images/Gestiones/gestionReservas.jpg"));
+        Image imagen1 = icono1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgReservas.setIcon(iconoRedimensionado1);
+
+        ImageIcon icono2 = new ImageIcon(getClass().getResource("/Images/Gestiones/gestionServicios.jpg"));
+        Image imagen2 = icono2.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado2 = new ImageIcon(imagen2);
+        imgServicios.setIcon(iconoRedimensionado2);
+
+
+        ImageIcon icono3 = new ImageIcon(getClass().getResource("/Images/mostrarInfo.png"));
+        Image imagen3 = icono3.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado3 = new ImageIcon(imagen3);
+        imgHorarios.setIcon(iconoRedimensionado3);
+
+        ImageIcon icono4 = new ImageIcon(getClass().getResource("/Images/Usuarios/datosUsuarios.jpg"));
+        Image imagen4 = icono4.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado4 = new ImageIcon(imagen4);
+        imgMostrar.setIcon(iconoRedimensionado4);
+
+        ImageIcon icono5 = new ImageIcon(getClass().getResource("/Images/modificarPerfil.png"));
+        Image imagen5 = icono5.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado5 = new ImageIcon(imagen5);
+        imgPerfil.setIcon(iconoRedimensionado5);
+
+        ImageIcon icono6 = new ImageIcon(getClass().getResource("/Images/actualizar1.png"));
+        Image imagen6 = icono6.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado6 = new ImageIcon(imagen6);
+        imgModificarReservas.setIcon(iconoRedimensionado6);
+
         btnLogOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

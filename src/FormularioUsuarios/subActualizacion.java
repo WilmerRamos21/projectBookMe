@@ -16,8 +16,14 @@ public class subActualizacion {
     private JButton btnActualizar;
     private JButton btnVolver;
     private JComboBox comboBoxRol;
+    private JLabel imgModificar;
 
     public subActualizacion() {
+        ImageIcon icono1 = new ImageIcon(getClass().getResource("/Images/Usuarios/modificacionUsuarios.jpg"));
+        Image imagen1 = icono1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgModificar.setIcon(iconoRedimensionado1);
+
         comboBoxRol.addItem("Admin");
         comboBoxRol.addItem("Empleado");
         comboBoxRol.addItem("Cliente");

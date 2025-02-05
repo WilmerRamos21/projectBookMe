@@ -17,7 +17,9 @@
         <children>
           <component id="6a8fd" class="javax.swing.JTable" binding="tableUsuario">
             <constraints/>
-            <properties/>
+            <properties>
+              <background color="-215121"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

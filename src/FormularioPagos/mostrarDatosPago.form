@@ -51,7 +51,10 @@
         <children>
           <component id="98bee" class="javax.swing.JTable" binding="tableDatosPago">
             <constraints/>
-            <properties/>
+            <properties>
+              <background color="-5705"/>
+              <gridColor color="-14803166"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

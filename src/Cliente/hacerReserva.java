@@ -18,9 +18,15 @@ public class hacerReserva {
     private JButton btnReservar;
     private JButton btnVolver;
     private JComboBox comboBoxObservaciones;
+    private JLabel imgReservas;
 
 
     public hacerReserva() {
+        ImageIcon icono4 = new ImageIcon(getClass().getResource("/Images/Gestiones/gestionReservas.jpg"));
+        Image imagen4 = icono4.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado4 = new ImageIcon(imagen4);
+        imgReservas.setIcon(iconoRedimensionado4);
+
         comboBoxObservaciones.addItem("Ninguno");
         comboBoxObservaciones.addItem("Hubo un problema");
         comboBoxObservaciones.setVisible(true);

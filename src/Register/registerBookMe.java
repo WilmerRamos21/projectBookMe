@@ -16,8 +16,15 @@ public class registerBookMe {
     private JButton btnLogin;
     private JButton btnRegister;
     private JComboBox comboBoxRol;
+    private JLabel imgLogo;
 
     public registerBookMe() {
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/BooKMe.jpg"));
+        Image imagen1 = img1.getImage().getScaledInstance(200,200, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgLogo.setIcon(iconoRedimensionado1);
+
+
         comboBoxRol.addItem("Empleado");
         comboBoxRol.addItem("Cliente");
         comboBoxRol.setVisible(true);

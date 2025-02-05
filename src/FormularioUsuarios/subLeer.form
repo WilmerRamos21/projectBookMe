@@ -17,7 +17,11 @@
         <children>
           <component id="773f" class="javax.swing.JTable" binding="datosTable">
             <constraints/>
-            <properties/>
+            <properties>
+              <background color="-5705"/>
+              <inheritsPopupMenu value="true"/>
+              <opaque value="true"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

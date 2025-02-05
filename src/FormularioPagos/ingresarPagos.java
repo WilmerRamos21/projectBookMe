@@ -16,8 +16,14 @@ public class ingresarPagos {
     private JButton btnVolver;
     private JComboBox comboBoxMPago;
     private JComboBox comboBoxDescription;
+    private JLabel imgAgregar;
 
     public ingresarPagos() {
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/mas.png"));
+        Image imagen = img1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgAgregar.setIcon(iconoRedimensionado);
+
         comboBoxMPago.addItem("Efectivo");
         comboBoxMPago.addItem("Tarjeta");
         comboBoxMPago.setVisible(true);

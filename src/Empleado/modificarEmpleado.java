@@ -16,8 +16,14 @@ public class modificarEmpleado {
     private JButton btnModificar;
     private JPasswordField fielPass;
     private JButton btnVolver;
+    private JLabel imgPerfil;
 
     public modificarEmpleado() {
+        ImageIcon icono5 = new ImageIcon(getClass().getResource("/Images/modificarPerfil.png"));
+        Image imagen5 = icono5.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado5 = new ImageIcon(imagen5);
+        imgPerfil.setIcon(iconoRedimensionado5);
+
         // Configurar el botón "Modificar"
         btnModificar.addActionListener(new ActionListener() {
             @Override

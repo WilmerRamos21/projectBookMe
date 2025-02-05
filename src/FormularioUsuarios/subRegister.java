@@ -15,8 +15,14 @@ public class subRegister {
     private JButton btnRegresar;
     public JPanel subRegisterPanel;
     private JComboBox comboBoxRol;
+    private JLabel imgNuevoUsuario;
 
     public subRegister() {
+        ImageIcon icono3 = new ImageIcon(getClass().getResource("/Images/Usuarios/nuevoUsuario.jpg"));
+        Image imagen3 = icono3.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado3 = new ImageIcon(imagen3);
+        imgNuevoUsuario.setIcon(iconoRedimensionado3);
+
         comboBoxRol.addItem("Admin");
         comboBoxRol.addItem("Empleado");
         comboBoxRol.addItem("Cliente");

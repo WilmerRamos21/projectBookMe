@@ -17,16 +17,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class loginBookMe {
-    private JTextField textFieldRol;
     private JTextField textFieldCorreo;
     private JPasswordField passwordField2;
     public JPanel loginPanel;
     private JButton btnLogin;
     private JButton btnResgister;
     private JComboBox comboBoxRol;
+    private JLabel imgInicio;
 
 
     public loginBookMe() {
+
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/BookMe.jpg"));
+        Image imagen1 = img1.getImage().getScaledInstance(200,200, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgInicio.setIcon(iconoRedimensionado1);
 
         comboBoxRol.addItem("Admin");
         comboBoxRol.addItem("Empleado");

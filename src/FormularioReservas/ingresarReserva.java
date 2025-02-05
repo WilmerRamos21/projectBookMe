@@ -15,8 +15,14 @@ public class ingresarReserva {
     private JButton btnIngresarReserva;
     private JButton btnVolver;
     private JComboBox comboBoxObservaciones;
+    private JLabel imgAgregar;
 
     public ingresarReserva() {
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/mas.png"));
+        Image imagen = img1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgAgregar.setIcon(iconoRedimensionado);
+
         comboBoxObservaciones.addItem("Ninguno");
         comboBoxObservaciones.addItem("Hubo un problema");
         comboBoxObservaciones.setVisible(true);

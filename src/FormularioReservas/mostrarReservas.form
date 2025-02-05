@@ -51,7 +51,9 @@
         <children>
           <component id="59f99" class="javax.swing.JTable" binding="tableDatosReservas">
             <constraints/>
-            <properties/>
+            <properties>
+              <background color="-5705"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

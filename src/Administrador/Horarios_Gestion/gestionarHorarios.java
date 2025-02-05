@@ -15,8 +15,36 @@ public class gestionarHorarios {
     private JButton btnEliminar;
     private JButton btnMostrar;
     private JButton btnVolver;
+    private JLabel imgAgregar;
+    private JLabel imgEliminar;
+    private JLabel imgMostrar;
+    private JLabel imgActualizar;
 
     public gestionarHorarios() {
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/mas.png"));
+        Image imagen = img1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgAgregar.setIcon(iconoRedimensionado);
+
+        ImageIcon img2 = new ImageIcon(getClass().getResource("/Images/eliminar1.png"));
+        Image imagen1 = img2.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgEliminar.setIcon(iconoRedimensionado1);
+
+        ImageIcon img3 = new ImageIcon(getClass().getResource("/Images/actualizar1.png"));
+        Image imagen2 = img3.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado2 = new ImageIcon(imagen2);
+        imgActualizar.setIcon(iconoRedimensionado2);
+
+        ImageIcon img4 = new ImageIcon(getClass().getResource("/Images/mostrarInfo.png"));
+        Image imagen3 = img4.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado3 = new ImageIcon(imagen3);
+        imgMostrar.setIcon(iconoRedimensionado3);
+
+
+
+
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

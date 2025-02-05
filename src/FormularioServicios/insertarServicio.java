@@ -14,8 +14,14 @@ public class insertarServicio {
     private JButton btnInsertar;
     private JButton btnVolver;
     public JPanel ingresoServiciosPanel;
+    private JLabel imgAgregar;
 
     public insertarServicio() {
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/mas.png"));
+        Image imagen = img1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgAgregar.setIcon(iconoRedimensionado);
+
         btnInsertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

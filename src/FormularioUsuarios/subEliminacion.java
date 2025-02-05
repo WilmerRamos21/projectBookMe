@@ -12,8 +12,14 @@ public class subEliminacion {
     private JButton btnEliminar;
     private JButton btnVolver;
     public JPanel eliminacionPanel;
+    private JLabel imgEliminar;
 
     public subEliminacion() {
+        ImageIcon icono2 = new ImageIcon(getClass().getResource("/Images/Usuarios/eliminarUsuarios.png"));
+        Image imagen2 = icono2.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado2 = new ImageIcon(imagen2);
+        imgEliminar.setIcon(iconoRedimensionado2);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

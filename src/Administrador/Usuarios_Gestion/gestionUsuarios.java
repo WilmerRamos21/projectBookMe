@@ -12,12 +12,39 @@ public class gestionUsuarios {
     public JPanel gestionUsuariosPanel;
     private JButton btnLeer;
     private JButton btnEliminar;
-    private JButton btnResgistrar;
+    private JButton btnRegistrar;
     private JButton btnActualizar;
     private JButton btnVolver;
+    private JLabel imgMostrar;
+    private JLabel imgModificar;
+    private JLabel imgEliminar;
+    private JLabel imgNuevoUsuario;
 
     public gestionUsuarios() {
-        btnResgistrar.addActionListener(new ActionListener() {
+        //Imagenes para cada apartado del panel
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Images/Usuarios/datosUsuarios.jpg"));
+        Image imagen = icono.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgMostrar.setIcon(iconoRedimensionado);
+
+        ImageIcon icono1 = new ImageIcon(getClass().getResource("/Images/Usuarios/modificacionUsuarios.jpg"));
+        Image imagen1 = icono1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgModificar.setIcon(iconoRedimensionado1);
+
+        ImageIcon icono2 = new ImageIcon(getClass().getResource("/Images/Usuarios/eliminarUsuarios.png"));
+        Image imagen2 = icono2.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado2 = new ImageIcon(imagen2);
+        imgEliminar.setIcon(iconoRedimensionado2);
+
+        ImageIcon icono3 = new ImageIcon(getClass().getResource("/Images/Usuarios/nuevoUsuario.jpg"));
+        Image imagen3 = icono3.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado3 = new ImageIcon(imagen3);
+        imgNuevoUsuario.setIcon(iconoRedimensionado3);
+
+
+
+        btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("Registrar Usuario");

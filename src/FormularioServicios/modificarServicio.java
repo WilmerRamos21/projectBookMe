@@ -15,8 +15,14 @@ public class modificarServicio {
     private JTextField textFieldPrecio;
     private JButton btnModificar;
     private JButton btnVolver;
+    private JLabel imgActualizar;
 
     public modificarServicio() {
+        ImageIcon img3 = new ImageIcon(getClass().getResource("/Images/actualizar1.png"));
+        Image imagen2 = img3.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado2 = new ImageIcon(imagen2);
+        imgActualizar.setIcon(iconoRedimensionado2);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -1,51 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Administrador.Usuarios_Gestion.gestionUsuarios">
-  <grid id="27dc6" binding="gestionUsuariosPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="gestionUsuariosPanel" layout-manager="GridLayoutManager" row-count="7" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-463381"/>
+    </properties>
     <border type="none"/>
     <children>
-      <component id="afc81" class="javax.swing.JButton" binding="btnLeer">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Mostrar datos"/>
-        </properties>
-      </component>
-      <component id="366f1" class="javax.swing.JButton" binding="btnEliminar">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Eliminar Usuarios"/>
-        </properties>
-      </component>
-      <component id="e4b0d" class="javax.swing.JButton" binding="btnResgistrar">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Registrar Usuarios"/>
-        </properties>
-      </component>
       <component id="279f1" class="javax.swing.JButton" binding="btnActualizar">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-5053710"/>
+          <defaultCapable value="true"/>
+          <hideActionText value="true"/>
+          <inheritsPopupMenu value="true"/>
+          <opaque value="true"/>
+          <requestFocusEnabled value="true"/>
+          <rolloverEnabled value="false"/>
+          <selected value="false"/>
           <text value="Actualizar información"/>
+          <verifyInputWhenFocusTarget value="true"/>
+          <visible value="true"/>
         </properties>
       </component>
       <component id="37f42" class="javax.swing.JButton" binding="btnVolver">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-11499839"/>
+          <inheritsPopupMenu value="true"/>
+          <opaque value="true"/>
           <text value="Volver al menú principal"/>
+        </properties>
+      </component>
+      <component id="6e5e0" class="javax.swing.JLabel" binding="imgMostrar">
+        <constraints>
+          <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="8348c" class="javax.swing.JLabel" binding="imgModificar">
+        <constraints>
+          <grid row="3" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="ead46" class="javax.swing.JLabel" binding="imgEliminar">
+        <constraints>
+          <grid row="3" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="d3432" class="javax.swing.JLabel" binding="imgNuevoUsuario">
+        <constraints>
+          <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="e4b0d" class="javax.swing.JButton" binding="btnRegistrar">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <background color="-6751336"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
+          <defaultCapable value="true"/>
+          <doubleBuffered value="false"/>
+          <enabled value="true"/>
+          <focusPainted value="true"/>
+          <focusTraversalPolicyProvider value="false"/>
+          <focusable value="true"/>
+          <hideActionText value="true"/>
+          <inheritsPopupMenu value="false"/>
+          <opaque value="true"/>
+          <requestFocusEnabled value="true"/>
+          <rolloverEnabled value="false"/>
+          <selected value="false"/>
+          <text value="Registrar Usuarios"/>
+          <verifyInputWhenFocusTarget value="true"/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <component id="366f1" class="javax.swing.JButton" binding="btnEliminar">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-215121"/>
+          <hideActionText value="true"/>
+          <inheritsPopupMenu value="true"/>
+          <opaque value="true"/>
+          <text value="Eliminar Usuarios"/>
+        </properties>
+      </component>
+      <grid id="8ae41" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="3" row-span="7" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-5705"/>
+          <foreground color="-5705"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="b5abd" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="7" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-5705"/>
+          <foreground color="-5705"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <component id="c606b" class="javax.swing.JButton" binding="btnLeer">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1597697"/>
+          <hideActionText value="true"/>
+          <inheritsPopupMenu value="true"/>
+          <opaque value="true"/>
+          <text value="Mostrar Datos"/>
         </properties>
       </component>
     </children>

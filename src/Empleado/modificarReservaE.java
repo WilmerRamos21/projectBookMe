@@ -17,8 +17,15 @@ public class modificarReservaE {
     private JTextField textFieldIdCliente;
     private JComboBox comboBoxEstadoReserva;
     private JComboBox comboBoxObservaciones;
+    private JLabel imgModificarReservas;
 
     public modificarReservaE() {
+
+        ImageIcon icono6 = new ImageIcon(getClass().getResource("/Images/actualizar1.png"));
+        Image imagen6 = icono6.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado6 = new ImageIcon(imagen6);
+        imgModificarReservas.setIcon(iconoRedimensionado6);
+
         comboBoxEstadoReserva.addItem("Pendiente");
         comboBoxEstadoReserva.addItem("Cancelada");
         comboBoxEstadoReserva.addItem("Completada");

@@ -12,8 +12,14 @@ public class eliminarReserva {
     private JTextField textFieldIdReserva;
     private JButton btnEliminar;
     private JButton btnVolver;
+    private JLabel imgEliminar;
 
     public eliminarReserva() {
+        ImageIcon img2 = new ImageIcon(getClass().getResource("/Images/eliminar1.png"));
+        Image imagen1 = img2.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado1 = new ImageIcon(imagen1);
+        imgEliminar.setIcon(iconoRedimensionado1);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

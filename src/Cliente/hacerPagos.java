@@ -16,8 +16,14 @@ public class hacerPagos {
     public JPanel hacerPagoPanel;
     private JComboBox comboBoxMPago;
     private JComboBox comboBoxDescripcion;
+    private JLabel imgHacerPago;
 
     public hacerPagos() {
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Images/hacerPagos.png"));
+        Image imagen = icono.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgHacerPago.setIcon(iconoRedimensionado);
+
         comboBoxMPago.addItem("Efectivo");
         comboBoxMPago.addItem("Tarjeta");
         comboBoxMPago.setVisible(true);

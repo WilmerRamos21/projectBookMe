@@ -43,7 +43,9 @@
         <children>
           <component id="7034d" class="javax.swing.JTable" binding="tableHorarios">
             <constraints/>
-            <properties/>
+            <properties>
+              <background color="-5053710"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

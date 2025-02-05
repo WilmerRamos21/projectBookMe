@@ -15,6 +15,7 @@ public class ingresarHorario {
     private JComboBox comboBoxDia;
     private JComboBox comboBoxHoraInicio;
     private JComboBox comboBoxHoraFin;
+    private JLabel imgAgregar;
 
     public ingresarHorario() {
         comboBoxDia.addItem("Lunes");
@@ -48,6 +49,11 @@ public class ingresarHorario {
         comboBoxHoraFin.addItem("19:00");
         comboBoxHoraFin.setVisible(true);
 
+        ImageIcon img1 = new ImageIcon(getClass().getResource("/Images/mas.png"));
+        Image imagen = img1.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        ImageIcon iconoRedimensionado = new ImageIcon(imagen);
+        imgAgregar.setIcon(iconoRedimensionado);
+
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,8 +70,9 @@ public class ingresarHorario {
         btnAgregarHorario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
-                    if(textFieldIdServicio.getText().matches("[0-9]+")){
+                try {if(textFieldIdServicio.getText().isEmpty()||textFieldIDEmpleado.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe llenar todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+                    }else if(textFieldIdServicio.getText().matches("[0-9]+")){
                         JOptionPane.showMessageDialog(null, "El ID del servicio solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
                     } else if (textFieldIdServicio.getText().matches("[0-9]+")) {
                         JOptionPane.showMessageDialog(null,"El ID del empleado solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
