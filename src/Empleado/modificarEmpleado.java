@@ -22,21 +22,29 @@ public class modificarEmpleado {
         btnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                usuariosCRUD eC = new usuariosCRUD();
-                String password = new String(fielPass.getPassword());
-                if (password.isEmpty() || textFieldId.getText().isEmpty() || textFieldNombre.getText().isEmpty() ||
-                        textFieldCorreo.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!textFieldId.getText().matches("[0-9]+")) {
-                    JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!textFieldNombre.getText().matches("[a-zA-Z ]+")) {
-                    JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else if (!validarCorreo(textFieldCorreo.getText())) {
-                    JOptionPane.showMessageDialog(null, "El correo debe tener un formato válido (ejemplo: usuario@dominio.com)", "Correo incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    eC.modificarUsuarioEmpleado(textFieldNombre.getText(), textFieldCorreo.getText(), password, Integer.parseInt(textFieldId.getText()));
-                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Usuario modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
-                    limpiarCampos();
+                try{
+                    usuariosCRUD eC = new usuariosCRUD();
+                    String password = new String(fielPass.getPassword());
+                    if (password.isEmpty() || textFieldId.getText().isEmpty() || textFieldNombre.getText().isEmpty() ||
+                            textFieldCorreo.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!textFieldId.getText().matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!textFieldNombre.getText().matches("[a-zA-Z ]+")) {
+                        JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (!validarCorreo(textFieldCorreo.getText())) {
+                        JOptionPane.showMessageDialog(null, "El correo debe tener un formato válido (ejemplo: usuario@dominio.com)", "Correo incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        eC.modificarUsuarioEmpleado(textFieldNombre.getText(), textFieldCorreo.getText(), password, Integer.parseInt(textFieldId.getText()));
+                        JOptionPane.showMessageDialog(null, "Usuario modificado correctamente", "Usuario modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                        limpiarCampos();
+                    }
+                } catch (NumberFormatException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El ID es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al modificar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -57,11 +65,11 @@ public class modificarEmpleado {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión del empleado");
                 frame.setContentPane(new empleadoBookMe().empleadoPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(modificarUsuarioPanel).dispose();

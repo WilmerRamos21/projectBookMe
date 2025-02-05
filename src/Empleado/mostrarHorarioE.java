@@ -1,6 +1,5 @@
 package Empleado;
 
-import Horarios_Gestion.gestionarHorarios;
 import conexion.Conexion;
 
 import javax.swing.*;
@@ -50,11 +49,11 @@ public class mostrarHorarioE {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión del empleado");
                 frame.setContentPane(new empleadoBookMe().empleadoPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(mostrarHorarioPanel).dispose();

@@ -1,6 +1,6 @@
 package FormularioServicios;
 
-import Servicios_Gestion.gestionServicios;
+import Administrador.Servicios_Gestion.gestionServicios;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,11 +17,11 @@ public class eliminarServicio {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de servicios");
                 frame.setContentPane(new gestionServicios().gestionServiciosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(eliminarServicioPanel).dispose();

@@ -1,4 +1,4 @@
-package Usuarios_Gestion;
+package Administrador.Usuarios_Gestion;
 import FormularioUsuarios.*;
 
 import Administrador.adminBookMe;
@@ -20,11 +20,11 @@ public class gestionUsuarios {
         btnResgistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Registrar Usuario");
                 frame.setContentPane(new subRegister().subRegisterPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionUsuariosPanel).dispose();
@@ -33,11 +33,11 @@ public class gestionUsuarios {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel Administrativo");
                 frame.setContentPane(new adminBookMe().adminPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionUsuariosPanel).dispose();
@@ -46,11 +46,11 @@ public class gestionUsuarios {
         btnLeer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Mostrar datos de los usuarios");
                 frame.setContentPane(new subLeer().leerPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionUsuariosPanel).dispose();
@@ -59,11 +59,11 @@ public class gestionUsuarios {
         btnActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Actualizar Usuario");
                 frame.setContentPane(new subActualizacion().actualizarPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionUsuariosPanel).dispose();
@@ -72,11 +72,11 @@ public class gestionUsuarios {
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Eliminar Usuario");
                 frame.setContentPane(new subEliminacion().eliminacionPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setSize(400, 400);
-                frame.setPreferredSize(new Dimension(400, 400));
+                frame.setSize(800, 600);
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionUsuariosPanel).dispose();

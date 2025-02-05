@@ -1,5 +1,5 @@
 package FormularioPagos;
-import Pagos_Gestion.gestionPagos;
+import Administrador.Pagos_Gestion.gestionPagos;
 import conexion.Conexion;
 
 import javax.swing.*;
@@ -51,11 +51,11 @@ public class mostrarDatosPago {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de pagos");
                 frame.setContentPane(new gestionPagos().gestionPagosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(mostrarPagosPanel).dispose();

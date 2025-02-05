@@ -1,13 +1,12 @@
 package Administrador;
 import Login.loginBookMe;
-import Register.registerBookMe;
-import Servicios_Gestion.gestionServicios;
-import Usuarios_Gestion.gestionUsuarios;
-import Reservas_Gestion.gestionReservas;
-import Horarios_Gestion.gestionarHorarios;
+import Administrador.Servicios_Gestion.gestionServicios;
+import Administrador.Usuarios_Gestion.gestionUsuarios;
+import Administrador.Reservas_Gestion.gestionReservas;
+import Administrador.Horarios_Gestion.gestionarHorarios;
 
 
-import Pagos_Gestion.gestionPagos;
+import Administrador.Pagos_Gestion.gestionPagos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +26,7 @@ public class adminBookMe {
         btnLogOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Inicio de sesión");
+                JFrame frame = new JFrame("Inicio de sesión a BookMe");
                 frame.setContentPane(new loginBookMe().loginPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
@@ -40,7 +39,7 @@ public class adminBookMe {
         btnGestionUsuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de usuarios");
                 frame.setContentPane(new gestionUsuarios().gestionUsuariosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
@@ -53,11 +52,11 @@ public class adminBookMe {
         btnGestionServicios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de servicios");
                 frame.setContentPane(new gestionServicios().gestionServiciosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(adminPanel).dispose();
@@ -66,11 +65,11 @@ public class adminBookMe {
         btnGestionPagos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de pagos");
                 frame.setContentPane(new gestionPagos().gestionPagosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(adminPanel).dispose();
@@ -79,11 +78,11 @@ public class adminBookMe {
         btnGestionReservas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de reservas");
                 frame.setContentPane(new gestionReservas().gestionReservasPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(adminPanel).dispose();
@@ -92,11 +91,11 @@ public class adminBookMe {
         btnGestionHorarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de horarios");
                 frame.setContentPane(new gestionarHorarios().gestionHorariosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(adminPanel).dispose();

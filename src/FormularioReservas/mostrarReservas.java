@@ -1,6 +1,6 @@
 package FormularioReservas;
 
-import Reservas_Gestion.gestionReservas;
+import Administrador.Reservas_Gestion.gestionReservas;
 import conexion.Conexion;
 
 import javax.swing.*;
@@ -26,6 +26,7 @@ public class mostrarReservas {
         modelTable.addColumn("ID Reserva");
         modelTable.addColumn("ID Horario");
         modelTable.addColumn("Fecha Reserva");
+        modelTable.addColumn("Estado Reserva");
         modelTable.addColumn("Observaciones");
         tableDatosReservas.setModel(modelTable);
 
@@ -45,11 +46,11 @@ public class mostrarReservas {
         cargarDatos(modelTable,null);
 
         btnVolver.addActionListener(e -> {
-            JFrame frame = new JFrame();
+            JFrame frame = new JFrame("Panel de gestión de reservas");
             frame.setContentPane(new gestionReservas().gestionReservasPanel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800, 600);
-            frame.setPreferredSize(new Dimension(800, 600));
+            frame.setPreferredSize(new Dimension(1020, 640));
             frame.pack();
             frame.setVisible(true);
         });
@@ -82,6 +83,7 @@ public class mostrarReservas {
                         rs.getString("id_reserva"),
                         rs.getString("id_horario"),
                         rs.getString("fecha_reserva"),
+                        rs.getString("estado_reserva"),
                         rs.getString("observaciones")
                 });
                 rowCount++;

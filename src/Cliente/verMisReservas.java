@@ -27,6 +27,7 @@ public class verMisReservas {
         modelo.addColumn("ID Cliente");
         modelo.addColumn("ID Horario");
         modelo.addColumn("Fecha Reserva");
+        modelo.addColumn("Estado Reserva");
         modelo.addColumn("Observaciones");
         tableMisReservas.setModel(modelo);
         cargarDatos(modelo, idUsuario);
@@ -36,11 +37,11 @@ public class verMisReservas {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel del Cliente");
                 frame.setContentPane(new clienteBookMe().clientePanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(misReservasPanel).dispose();
@@ -62,6 +63,7 @@ public class verMisReservas {
                         rs.getString("id_cliente"),
                         rs.getString("id_horario"),
                         rs.getString("fecha_reserva"),
+                        rs.getString("estado_reserva"),
                         rs.getString("observaciones")
                 });
                 rowCount++;

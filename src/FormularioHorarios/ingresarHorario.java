@@ -1,5 +1,5 @@
 package FormularioHorarios;
-import Horarios_Gestion.gestionarHorarios;
+import Administrador.Horarios_Gestion.gestionarHorarios;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,11 +51,11 @@ public class ingresarHorario {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de horarios");
                 frame.setContentPane(new gestionarHorarios().gestionHorariosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(ingresarHorarioPanel).dispose();

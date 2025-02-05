@@ -5,7 +5,6 @@ import Register.registerBookMe;
 
 public class Main {
     public static void main(String[] args) {
-
         JFrame frame = new JFrame("Registro de usuario a BookMe");
         frame.setContentPane(new registerBookMe().registerPanel);
         frame.setSize(800, 600);

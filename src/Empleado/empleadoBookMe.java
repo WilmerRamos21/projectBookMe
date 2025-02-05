@@ -23,7 +23,7 @@ public class empleadoBookMe {
         btnLogOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Inicio de sesión");
+                JFrame frame = new JFrame("Inicio de sesión a BookMe");
                 frame.setContentPane(new loginBookMe().loginPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
@@ -36,7 +36,7 @@ public class empleadoBookMe {
         btnPerfil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Perfil");
+                JFrame frame = new JFrame("Perfil de modificacion del usuario");
                 frame.setContentPane(new modificarEmpleado().modificarUsuarioPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
@@ -51,11 +51,11 @@ public class empleadoBookMe {
             public void actionPerformed(ActionEvent e) {
                 String correo = sesionCorreo.getCorreo();
                 System.out.println(correo);
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Mostrar datos generales del usuario");
                 frame.setContentPane(new mostrarDatosE().datosEPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(empleadoPanel).dispose();
@@ -64,11 +64,11 @@ public class empleadoBookMe {
         btnHorarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Horarios");
                 frame.setContentPane(new mostrarHorarioE().mostrarHorarioPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(empleadoPanel).dispose();
@@ -77,11 +77,11 @@ public class empleadoBookMe {
         btnServicios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Servicios");
                 frame.setContentPane(new mostrarServiciosE().mostrarServicioPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(empleadoPanel).dispose();
@@ -90,11 +90,11 @@ public class empleadoBookMe {
         btnModificarReservas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Modificación de reservas");
                 frame.setContentPane(new modificarReservaE().modificarReservaPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(empleadoPanel).dispose();
@@ -103,11 +103,11 @@ public class empleadoBookMe {
         btnReservas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Mostrar reservas");
                 frame.setContentPane(new mostrarReservasE().mostrarReservasPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(empleadoPanel).dispose();

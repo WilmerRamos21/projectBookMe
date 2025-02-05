@@ -1,6 +1,6 @@
 package FormularioReservas;
 
-import Reservas_Gestion.gestionReservas;
+import Administrador.Reservas_Gestion.gestionReservas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +23,11 @@ public class ingresarReserva {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de reservas");
                 frame.setContentPane(new gestionReservas().gestionReservasPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(registrarReservaPanel).dispose();
@@ -37,7 +37,7 @@ public class ingresarReserva {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if(textFieldIdCliente.getText().isEmpty() || textFieldIdHorario.getText().isEmpty()){
+                    if (textFieldIdCliente.getText().isEmpty() || textFieldIdHorario.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacios",JOptionPane.INFORMATION_MESSAGE);
                     } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null,"El ID de cliente solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);

@@ -1,4 +1,4 @@
-package Reservas_Gestion;
+package Administrador.Reservas_Gestion;
 
 import Administrador.adminBookMe;
 import FormularioReservas.*;
@@ -20,11 +20,11 @@ public class gestionReservas {
         volverAlMenúPrincipalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel Administrativo");
                 frame.setContentPane(new adminBookMe().adminPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionReservasPanel).dispose();
@@ -33,11 +33,11 @@ public class gestionReservas {
         btnRegistrarReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Registrar Reserva");
                 frame.setContentPane(new ingresarReserva().registrarReservaPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionReservasPanel).dispose();
@@ -46,11 +46,11 @@ public class gestionReservas {
         btnEliminarReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Eliminar Reserva");
                 frame.setContentPane(new eliminarReserva().eliminarReservaPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionReservasPanel).dispose();
@@ -59,11 +59,11 @@ public class gestionReservas {
         btnActualizarReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Actualizar Reserva");
                 frame.setContentPane(new modificarReserva().modificarReservaPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionReservasPanel).dispose();
@@ -72,11 +72,11 @@ public class gestionReservas {
         btnMostrarReservas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Mostrar Reservas");
                 frame.setContentPane(new mostrarReservas().mostrarReservasPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(gestionReservasPanel).dispose();

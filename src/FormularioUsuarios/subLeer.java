@@ -1,6 +1,6 @@
 package FormularioUsuarios;
 
-import Usuarios_Gestion.gestionUsuarios;
+import Administrador.Usuarios_Gestion.gestionUsuarios;
 import conexion.Conexion;
 
 import javax.swing.*;
@@ -37,7 +37,7 @@ public class subLeer {
         btnVolver = new JButton("Volver");
         leerPanel.add(btnVolver, BorderLayout.SOUTH); // Botón en la parte inferior
 
-        textFieldId = new JTextField(15);
+        textFieldId = new JTextField(10);
         btnBuscar = new JButton("Buscar");
         panelBusqueda = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelBusqueda.add(textFieldId);
@@ -50,11 +50,11 @@ public class subLeer {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel de gestión de usuarios");
                 frame.setContentPane(new gestionUsuarios().gestionUsuariosPanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(leerPanel).dispose();

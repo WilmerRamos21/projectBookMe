@@ -1,6 +1,5 @@
 package Empleado;
 
-import Reservas_Gestion.gestionReservas;
 import conexion.Conexion;
 
 import javax.swing.*;
@@ -27,6 +26,7 @@ public class mostrarReservasE {
         modelTable.addColumn("ID Cliente");
         modelTable.addColumn("ID Horario");
         modelTable.addColumn("Fecha Reserva");
+        modelTable.addColumn("Estado Reserva");
         modelTable.addColumn("Observaciones");
         tableDatosReservas.setModel(modelTable);
 
@@ -46,11 +46,11 @@ public class mostrarReservasE {
         cargarDatos(modelTable,null);
 
         btnVolver.addActionListener(e -> {
-            JFrame frame = new JFrame();
+            JFrame frame = new JFrame("Panel de gestión del empleado");
             frame.setContentPane(new empleadoBookMe().empleadoPanel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800, 600);
-            frame.setPreferredSize(new Dimension(800, 600));
+            frame.setPreferredSize(new Dimension(1020, 640));
             frame.pack();
             frame.setVisible(true);
         });
@@ -84,6 +84,7 @@ public class mostrarReservasE {
                         rs.getString("id_cliente"),
                         rs.getString("id_horario"),
                         rs.getString("fecha_reserva"),
+                        rs.getString("estado_reserva"),
                         rs.getString("observaciones")
                 });
                 rowCount++;

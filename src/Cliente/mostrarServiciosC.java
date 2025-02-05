@@ -1,6 +1,5 @@
 package Cliente;
 
-import Servicios_Gestion.gestionServicios;
 import conexion.Conexion;
 
 import javax.swing.*;
@@ -46,11 +45,11 @@ public class mostrarServiciosC {
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Panel del Cliente");
                 frame.setContentPane(new clienteBookMe().clientePanel);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(800, 600);
-                frame.setPreferredSize(new Dimension(800, 600));
+                frame.setPreferredSize(new Dimension(1020, 640));
                 frame.pack();
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(mostrarServiciosPanel).dispose();
