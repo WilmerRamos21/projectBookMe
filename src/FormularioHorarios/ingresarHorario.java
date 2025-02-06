@@ -72,16 +72,16 @@ public class ingresarHorario {
             public void actionPerformed(ActionEvent e) {
                 try {if(textFieldIdServicio.getText().isEmpty()||textFieldIDEmpleado.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Debe llenar todos los campos","Error",JOptionPane.ERROR_MESSAGE);
-                    }else if(textFieldIdServicio.getText().matches("[0-9]+")){
+                    }else if(textFieldIdServicio.getText().matches("[0-9]+]")){
                         JOptionPane.showMessageDialog(null, "El ID del servicio solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (textFieldIdServicio.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdServicio.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null,"El ID del empleado solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
                     } else{
                         horariosCRUD horCRUD = new horariosCRUD();
                         horCRUD.crearHorario(Integer.parseInt(textFieldIDEmpleado.getText()),
-                                comboBoxDia.getActionCommand(),
-                                comboBoxHoraInicio.getActionCommand(),
-                                comboBoxHoraFin.getActionCommand(),
+                                comboBoxDia.getSelectedItem().toString(),
+                                comboBoxHoraInicio.getSelectedItem().toString(),
+                                comboBoxHoraFin.getSelectedItem().toString(),
                                 Integer.parseInt(textFieldIdServicio.getText()));
                         JOptionPane.showMessageDialog(null, "Horario agregado correctamente");
                         textFieldIDEmpleado.setText("");

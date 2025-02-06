@@ -46,11 +46,14 @@ public class modificarServicio {
                         JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.ERROR_MESSAGE);
                     } else if(!textFieldPrecio.getText().matches("^[0-9]+(\\.[0-9]{1,2})?$")) {
                         JOptionPane.showMessageDialog(null, "El campo de precio solo debe ingresar valores númericos", "Precio incorrecto", JOptionPane.ERROR_MESSAGE);
-                    } else if(!textFieldIdServicio.getText().matches("[0-9]+")) {
+                    } else if(!textFieldIdServicio.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null,"El ID solo recibe valores númericos", "ID incorrecto", JOptionPane.ERROR_MESSAGE);
                     } else{
                         serviciosCRUD servCRUD = new serviciosCRUD();
-                        servCRUD.modifcarServicio(textFieldNombre.getText(),textFieldDescripcion.getText(),Integer.parseInt(textFieldPrecio.getText()),Integer.parseInt(textFieldIdServicio.getText()));
+                        servCRUD.modifcarServicio(textFieldNombre.getText(),
+                                textFieldDescripcion.getText(),
+                                Integer.parseInt(textFieldPrecio.getText()),
+                                Integer.parseInt(textFieldIdServicio.getText()));
                         JOptionPane.showMessageDialog(null, "Servicio modificado correctamente","Modificar",JOptionPane.INFORMATION_MESSAGE);
                         textFieldNombre.setText("");
                         textFieldDescripcion.setText("");

@@ -54,14 +54,18 @@ public class actualizarPago {
                 try {
                     if (textFieldId.getText().isEmpty() || textFieldIdReserva.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Debe ingresar los campos", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (textFieldIdReserva.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdReserva.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID de pago solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                    } else if (textFieldId.getText().matches("[0-9]+")) {
+                    } else if (textFieldId.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         pagosCRUD payCRUD = new pagosCRUD();
-                        payCRUD.actualizarPago(Integer.parseInt(textFieldId.getText()), Integer.parseInt(textFieldIdReserva.getText()),
-                                LocalDate.now(), comboBoxMPago.getActionCommand(), comboBoxEPago.getActionCommand(), comboBoxDescripcion.getActionCommand(), Integer.parseInt(textFieldIdPago.getText()));
+                        payCRUD.actualizarPago(Integer.parseInt(textFieldId.getText()),
+                                Integer.parseInt(textFieldIdReserva.getText()),
+                                LocalDate.now(), comboBoxMPago.getSelectedItem().toString(),
+                                comboBoxEPago.getSelectedItem().toString(),
+                                comboBoxDescripcion.getSelectedItem().toString(),
+                                Integer.parseInt(textFieldIdPago.getText()));
                         JOptionPane.showMessageDialog(null, "Pago actualizado correctamente", "Actualizar Pago", JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdPago.setText("");
                         textFieldId.setText("");

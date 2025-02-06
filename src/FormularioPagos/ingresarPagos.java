@@ -49,17 +49,17 @@ public class ingresarPagos {
                 try{
                     if (textFieldIdCliente.getText().isEmpty() || textFieldIdReserva.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Debe ingresar los campos", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (textFieldIdReserva.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdReserva.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID de pago solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                    } else if (textFieldIdCliente.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
                     } else{
                         pagosCRUD payCRUD = new pagosCRUD();
                         payCRUD.ingresarPago(Integer.parseInt(textFieldIdCliente.getText()),
                                 Integer.parseInt(textFieldIdReserva.getText()),
                                 LocalDate.now(),
-                                comboBoxMPago.getActionCommand(),
-                                comboBoxDescription.getActionCommand());
+                                comboBoxMPago.getSelectedItem().toString(),
+                                comboBoxDescription.getSelectedItem().toString());
                         JOptionPane.showMessageDialog(null, "Pago insertado correctamente","Ingresar Pago",JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdCliente.setText("");
                         textFieldIdReserva.setText("");

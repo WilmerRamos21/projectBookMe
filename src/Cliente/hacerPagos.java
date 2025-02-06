@@ -1,6 +1,8 @@
 package Cliente;
 
+import Empleado.sesionCorreo;
 import FormularioPagos.pagosCRUD;
+import generarPDF.hacerPDF;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +26,7 @@ public class hacerPagos {
         ImageIcon iconoRedimensionado = new ImageIcon(imagen);
         imgHacerPago.setIcon(iconoRedimensionado);
 
+
         comboBoxMPago.addItem("Efectivo");
         comboBoxMPago.addItem("Tarjeta");
         comboBoxMPago.setVisible(true);
@@ -46,22 +49,30 @@ public class hacerPagos {
         btnPagar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 try { if(textFieldIdCliente.getText().isEmpty() || textFieldIdReserva.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null,"Debe llenar los campos","Error",JOptionPane.ERROR_MESSAGE);
                     } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
                     JOptionPane.showMessageDialog(null,"El ID del cliente solo contiene valores númericos","Error",JOptionPane.ERROR_MESSAGE);
-                    } else if (textFieldIdReserva.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdReserva.getText().matches("[0-9]+]")) {
                     JOptionPane.showMessageDialog(null,"El ID de la reserva solo contiene valores numeros","Error",JOptionPane.ERROR_MESSAGE);
                     } else{
+
+                        int idRserva = Integer.parseInt(textFieldIdReserva.getText());
+
                         pagosCRUD payCRUD = new pagosCRUD();
                         payCRUD.ingresarPago(Integer.parseInt(textFieldIdCliente.getText()),
                                 Integer.parseInt(textFieldIdReserva.getText()),
                                 LocalDate.now(),
-                                comboBoxMPago.getActionCommand(),
-                                comboBoxDescripcion.getActionCommand());
+                                comboBoxMPago.getSelectedItem().toString(),
+                                comboBoxDescripcion.getSelectedItem().toString());
                         JOptionPane.showMessageDialog(null, "Pago insertado correctamente", "Ingresar Pago", JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdCliente.setText("");
                         textFieldIdReserva.setText("");
+
+                        hacerPDF hacerPDF1 = new hacerPDF();
+                        hacerPDF1.hacerFacturaPDF(idRserva);
                     }
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();

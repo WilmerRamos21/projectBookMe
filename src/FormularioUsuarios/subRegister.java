@@ -45,7 +45,7 @@ public class subRegister {
                                 textFieldNombre.getText(),
                                 textFieldCorreo.getText(),
                                 password,
-                                comboBoxRol.getActionCommand()
+                                comboBoxRol.getSelectedItem().toString()
                         );
                         JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente","Ingreso exitosamente", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();

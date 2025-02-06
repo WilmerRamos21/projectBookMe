@@ -56,7 +56,7 @@ public class subActualizacion {
                         JOptionPane.showMessageDialog(null, "El rol debe ser 'Empleado' o 'Cliente'", "Rol incorrecto", JOptionPane.INFORMATION_MESSAGE);
                     } else if (!validarCorreo(textFieldCorreo.getText())) {
                         JOptionPane.showMessageDialog(null, "El correo debe tener un formato válido (ejemplo: usuario@dominio.com)", "Correo incorrecto", JOptionPane.INFORMATION_MESSAGE);
-                    } else if (!textFieldId.getText().matches("[0-9]+")) {
+                    } else if (!textFieldId.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
                     } else if (!textFieldNombre.getText().matches("[a-zA-Z ]+")) {
                         JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.INFORMATION_MESSAGE);
@@ -66,7 +66,7 @@ public class subActualizacion {
                                 textFieldNombre.getText(),
                                 textFieldCorreo.getText(),
                                 password,
-                                comboBoxRol.getActionCommand(),
+                                comboBoxRol.getSelectedItem().toString(),
                                 Integer.parseInt(textFieldId.getText())
                         );
                         JOptionPane.showMessageDialog(actualizarPanel, "Datos actualizados exitosamente","Ingreso exitosamente", JOptionPane.INFORMATION_MESSAGE);

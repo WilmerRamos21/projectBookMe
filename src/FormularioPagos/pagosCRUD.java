@@ -1,4 +1,5 @@
 package FormularioPagos;
+import Empleado.sesionCorreo;
 import conexion.Conexion;
 
 import java.sql.*;
@@ -7,6 +8,8 @@ import java.time.LocalDate;
 public class pagosCRUD {
     public boolean ingresarPago(int idCliente, int idReserva, LocalDate fechaPago,
                              String metodoPago,String descripcion) {
+
+
 
         String queryPago = "INSERT INTO pagosRealizados ( id_cliente, id_reserva, fecha_pago, metodo_pago, descripcion)VALUES (?,?,?,?,?)";
         String queryActualizacionEstado = "UPDATE pagosRealizados SET estado_pago = 'Pagado' WHERE id_reserva = ?";

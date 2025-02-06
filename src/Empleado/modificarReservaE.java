@@ -54,17 +54,17 @@ public class modificarReservaE {
                     JOptionPane.showMessageDialog(null, "Debe llenar los campos", "Error", JOptionPane.ERROR_MESSAGE);
                     } else if (textFieldIdHorario.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID del horario debe ser numerico", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (textFieldIdReserva.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdReserva.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID de la reserva debe ser numerico", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (textFieldIdCliente.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID del cliente debe ser numerico", "Error", JOptionPane.ERROR_MESSAGE);
                     } else{
                         reservasCRUD resCRUD = new reservasCRUD();
                         resCRUD.actualizarReserva( Integer.parseInt(textFieldIdCliente.getText()),
                                 Integer.parseInt(textFieldIdHorario.getText()),
                                 LocalDate.now(),
-                                comboBoxEstadoReserva.getActionCommand(),
-                                comboBoxObservaciones.getActionCommand(),
+                                comboBoxEstadoReserva.getSelectedItem().toString(),
+                                comboBoxObservaciones.getSelectedItem().toString(),
                                 Integer.parseInt(textFieldIdReserva.getText()));
                         JOptionPane.showMessageDialog(null, "Reserva modificada correctamente","Modificar Reserva",JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdCliente.setText("");

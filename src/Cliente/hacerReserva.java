@@ -46,7 +46,7 @@ public class hacerReserva {
                     } else if(idClienteIngresado != idClienteSesion){
                         JOptionPane.showMessageDialog(null, "No puede realizar la reserva con el ID de otro usuario.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    if (resCRUD.ingresarReserva(idClienteIngresado,idHorario,fecha,comboBoxObservaciones.getActionCommand())){
+                    if (resCRUD.ingresarReserva(idClienteIngresado,idHorario,fecha,comboBoxObservaciones.getSelectedItem().toString())){
                         JOptionPane.showMessageDialog(null, "Reserva insertada correctamente.","Hacer Reserva",JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdCliente.setText("");
                         textFieldIdHorario.setText("");

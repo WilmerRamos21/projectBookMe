@@ -34,7 +34,7 @@ public class modificarEmpleado {
                     if (password.isEmpty() || textFieldId.getText().isEmpty() || textFieldNombre.getText().isEmpty() ||
                             textFieldCorreo.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
-                    } else if (!textFieldId.getText().matches("[0-9]+")) {
+                    } else if (!textFieldId.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null, "El ID solo puede contener números", "ID incorrecto", JOptionPane.INFORMATION_MESSAGE);
                     } else if (!textFieldNombre.getText().matches("[a-zA-Z ]+")) {
                         JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras y espacios", "Nombre incorrecto", JOptionPane.INFORMATION_MESSAGE);

@@ -47,12 +47,14 @@ public class ingresarReserva {
                     JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacios",JOptionPane.INFORMATION_MESSAGE);
                     } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null,"El ID de cliente solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
-                    } else if (textFieldIdHorario.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdHorario.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null,"El ID horario solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         reservasCRUD resCRUD = new reservasCRUD();
-                        resCRUD.ingresarReserva(Integer.parseInt(textFieldIdCliente.getText()), Integer.parseInt(textFieldIdHorario.getText()),
-                            LocalDate.now(), comboBoxObservaciones.getActionCommand());
+                        resCRUD.ingresarReserva(Integer.parseInt(textFieldIdCliente.getText()),
+                                Integer.parseInt(textFieldIdHorario.getText()),
+                            LocalDate.now(),
+                                comboBoxObservaciones.getSelectedItem().toString());
                         JOptionPane.showMessageDialog(null, "Reserva insertada correctamente", "Ingresar Reserva", JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdCliente.setText("");
                         textFieldIdHorario.setText("");

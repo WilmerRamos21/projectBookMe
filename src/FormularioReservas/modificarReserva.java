@@ -55,17 +55,17 @@ public class modificarReserva {
                     JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacios",JOptionPane.INFORMATION_MESSAGE);
                     } else if (textFieldIdCliente.getText().matches("[0-9]+]")) {
                     JOptionPane.showMessageDialog(null,"El ID de cliente solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
-                    } else if (textFieldIdHorario.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdHorario.getText().matches("[0-9]+]")) {
                     JOptionPane.showMessageDialog(null,"El ID horario solo recibe valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
-                    } else if (textFieldIdReserva.getText().matches("[0-9]+")) {
+                    } else if (textFieldIdReserva.getText().matches("[0-9]+]")) {
                         JOptionPane.showMessageDialog(null,"El ID de la reserva solo permite valores númericos","ID incorrecto",JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         reservasCRUD resCRUD = new reservasCRUD();
                         resCRUD.actualizarReserva(Integer.parseInt(textFieldIdCliente.getText()),
                                 Integer.parseInt(textFieldIdHorario.getText()),
                                 LocalDate.now(),
-                                comboBoxEstadoReserva.getActionCommand(),
-                                comboBoxObservaciones.getActionCommand(),
+                                comboBoxEstadoReserva.getSelectedItem().toString(),
+                                comboBoxObservaciones.getSelectedItem().toString(),
                                 Integer.parseInt(textFieldIdReserva.getText()));
                         JOptionPane.showMessageDialog(null, "Reserva modificada correctamente", "Modificar Reserva", JOptionPane.INFORMATION_MESSAGE);
                         textFieldIdReserva.setText("");
