@@ -98,11 +98,19 @@ Lógica de negocio para:
 ## Capturas de pantalla
 
 - login 
+<img width="1014" alt="InicioSesionBookMe" src="https://github.com/user-attachments/assets/53822893-c70e-4dcb-9286-e1fb47557aa7" />
 
 - Registro
+<img width="1020" alt="RegistroBookMe" src="https://github.com/user-attachments/assets/c6ea3852-f21f-427f-8954-283c7919836f" />
+
+- Panel de gestión Administrativo
+<img width="1016" alt="panelAdministrativo" src="https://github.com/user-attachments/assets/630ff844-f3f7-4f5b-a8f4-66e686d19c94" />
 
 - Panel de gestión del Empleado
+<img width="1024" alt="panelEmpleado" src="https://github.com/user-attachments/assets/5e0de3ff-0a22-456a-9043-49d19c4cdba7" />
 
 - Panel de gestión del Cliente
+<img width="1020" alt="panelCliente" src="https://github.com/user-attachments/assets/c1e7b094-9ebb-440b-b32a-4ea17299d60d" />
 
 - PDF
+<img width="1083" alt="facturaGenerada" src="https://github.com/user-attachments/assets/de4106a1-9f02-4bc9-b831-369966527189" />
