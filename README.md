@@ -100,7 +100,6 @@ Lógica de negocio para:
 - login 
 
 - Registro
-RegistroBookMe.png- Panel de gestión del Administrador
 
 - Panel de gestión del Empleado
 
