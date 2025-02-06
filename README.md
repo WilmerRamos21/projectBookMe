@@ -100,7 +100,7 @@ Lógica de negocio para:
 - login 
 
 - Registro
-https://github.com/WilmerRamos21/projectBookMe/blob/main/RegistroBookMe.png
+
 - Panel de gestión del Administrador
 
 - Panel de gestión del Empleado
